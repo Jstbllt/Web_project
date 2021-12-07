@@ -1,0 +1,73 @@
+<!-- views/computers_edit.ejs -->
+<!-- RECEIVES: oneComputer [a single computer object] + brands [array of brand objects] -->
+<%- include("partial_headers.ejs"); %>
+
+<h1>Single computer editor form</h1>
+
+<p><a href='/computers/list'>Back to the list</a></p>
+<!-- body-parser ==> we cannot use multipart/form-data ==> no file uploads -->
+<form action='/computers/update/<%= oneComputer.computer_id %>' method='post'
+            enctype='application/x-www-form-urlencoded'>
+
+<table class="table table-striped table-bordered table-hover">            
+    <tr><td>Brand:</td>
+        <td>
+            <select name='computer_brand'>
+              <% for (var b of brands) { %>
+                    <option value='<%= b.brand_id %>' 
+                        <%- b.brand_id==oneComputer.computer_brand ? "selected='selected'" : "" %>
+                    > <%= b.brand_name %></option>
+              <% } %>
+            </select>
+        </td></tr>
+
+    <tr><td>Model:</td>
+        <td><input type='text' name='car_model' value='<%= oneComputer.computer_model %>' /></td></tr>
+
+    <tr><td>CPU:</td>
+        <td>
+            <select name='computer_cpu'>
+                <% for (var c of cpu) { %>
+                    <option value='<%= c.cpu_id %>'
+                            <%- c.cpu_id==oneComputer.computer_cpu ? "selected='selected'" : "" %>
+                    > <%= oneCpu.cpu_brand + " " + c.cpu_model %></option>
+                <% } %>
+            </select>
+        </td></tr>
+
+    <tr><td>GPU:</td>
+        <td>
+            <select name='computer_gpu'>
+                <% for (var g of gpu) { %>
+                    <option value='<%= g.gpu_id %>'
+                            <%- g.gpu_id==oneComputer.computer_gpu ? "selected='selected'" : "" %>
+                    > <%= g.brand_name + " " + g.gpu_model %></option>
+                <% } %>
+            </select>
+        </td></tr>
+
+    <tr><td>Storage (Go):</td>
+        <td><input type='number' name='computer_storage' value='<%= oneComputer.computer_storage %>' /></td></tr>
+
+    <tr><td>RAM (Go):</td>
+        <td><input type='number' name='computer_ram' value='<%= oneComputer.computer_ram %>' /></td></tr>
+
+    <tr><td>Size:</td>
+        <td>
+            <select name='computer_size'>
+                <% for (var s of brands) { %>
+                    <option value='<%= s.brand_id %>'
+                            <%- s.brand_id==oneComputer.computer_size ? "selected='selected'" : "" %>
+                    > <%= s.brand_name %></option>
+                <% } %>
+            </select>
+        </td></tr>
+
+    <tr><td>Total price (€):</td>
+        <td><input type='number' name='computer_price' value='<%= oneComputer.computer_price %>' /></td></tr>
+    <tr><td colspan='2'> <input type='submit' value='SEND' /> </td></tr>
+</table>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!-- views/computers_list.ejs -->
+<!-- RECEIVES: computers [an array of computer objects] + flashMessage [string, the error message] -->
+<%- include("partial_headers.ejs"); %>
+
+<h1>List of Computers</h1>
+<% if (flashMessage) { %>
+    <p style='color:red'><%= flashMessage %></p>
+<% } %>
+
+<p><a href='/computers/edit/0'>Add a new computer</a></p>
+
+<table class="table table-striped table-bordered table-hover">
+    <tr>
+        <td>ID</td>
+        <td>Brand</td>
+        <td>Model</td>
+        <td>CPU</td>
+        <td>GPU</td>
+        <td>Storage</td>
+        <td>RAM</td>
+        <td>Size</td>
+        <td>Price</td>
+        <td>Show</td>
+        <td>Edit</td>
+        <td>Delete</td>
+    </tr>
+    
+<% for (var c of computers) { %>
+    <tr>
+        <td><%= c.computer_id %></td>
+        <td><%= c.brand_name %></td>
+        <td><%= c.computer_model %></td>
+        <td><%= c.computer_cpu %></td>
+        <td><%= c.computer_gpu %></td>
+        <td><%= c.computer_storage %></td>
+        <td><%= c.computer_ram %></td>
+        <td><%= c.computer_size %></td>
+        <td><%= c.computer_price %></td>
+        <td><a href='/computers/show/<%= c.computer_id %>'>Show</a></td>
+        <td><a href='/computers/edit/<%= c.computer_id %>'>Edit</a></td>
+        <td><a href='/computers/del/<%= c.computer_id %>'>Delete</a></td>
+    </tr>
+<% } %>
+</table>
+</body>
+</html>

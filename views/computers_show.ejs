@@ -1,0 +1,24 @@
+<!-- views/computers_show.ejs -->
+<!-- RECEIVES: oneComputer [a single computer object] -->
+<!-- display in a secure way: every active content is ESCAPED (as HTML entities...) -->
+<!-- Security problems: SQL Injection, XSS Cross Site Scripting  -->
+<%- include("partial_headers.ejs"); %>
+
+<h1>Single Computer Datasheet</h1>
+
+<p><a href='/computers/list'>Back to the list</a></p>
+
+<table class="table table-striped table-bordered table-hover">
+    <tr><td>ID:</td><td> <%= oneComputer.computer_id %> </td></tr>
+    <tr><td>Brand:</td><td> <%= oneComputer.computer_brand %> <%= oneComputer.brand_name %> </td></tr>
+    <tr><td>Model:</td><td> <%= oneComputer.computer_model %> </td></tr>
+    <tr><td>CPU:</td><td> <%= oneComputer.computer_cpu %> <%= oneCpu.brand_name %> <%= oneCpu.cpu_model %></td></tr>
+    <tr><td>GPU:</td><td> <%= oneComputer.computer_gpu %> </td></tr>
+    <tr><td>Storage (Go):</td><td> <%= oneComputer.computer_storage %> </td></tr>
+    <tr><td>RAM (Go):</td><td> <%= oneComputer.computer_ram %> </td></tr>
+    <tr><td>Size (pouce):</td><td> <%= oneComputer.computer_size %> </td></tr>
+    <tr><td>Price:</td><td> <%= oneComputer.computer_price %> </td></tr>
+</table>
+
+</body>
+</html>
