@@ -22,7 +22,7 @@
         </td></tr>
 
     <tr><td>Model:</td>
-        <td><input type='text' name='car_model' value='<%= oneComputer.computer_model %>' /></td></tr>
+        <td><input type='text' name='computer_model' value='<%= oneComputer.computer_model %>' /></td></tr>
 
     <tr><td>CPU:</td>
         <td>
@@ -30,7 +30,7 @@
                 <% for (var c of cpu) { %>
                     <option value='<%= c.cpu_id %>'
                             <%- c.cpu_id==oneComputer.computer_cpu ? "selected='selected'" : "" %>
-                    > <%= oneCpu.cpu_brand + " " + c.cpu_model %></option>
+                    > <%= c.cpu_brand + " " + c.cpu_model %></option>
                 <% } %>
             </select>
         </td></tr>
