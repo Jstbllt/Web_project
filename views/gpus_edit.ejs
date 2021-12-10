@@ -1,0 +1,41 @@
+<!-- views/gpus_edit.ejs -->
+<!-- RECEIVES: oneComputer [a single computer object] + brands [array of brand objects] -->
+<%- include("partial_headers.ejs"); %>
+
+<h1>Single GPU editor form</h1>
+
+<p><a href='/gpus/list'>Back to the list</a></p>
+<!-- body-parser ==> we cannot use multipart/form-data ==> no file uploads -->
+<form action='/gpus/update/<%= oneGpu.gpu_id %>' method='post'
+      enctype='application/x-www-form-urlencoded'>
+
+    <table class="table table-striped table-bordered table-hover">
+        <tr><td>Brand:</td>
+            <td>
+                <select name='gpu_brand'>
+                    <% for (var g of gpus) { %>
+                        <option value='<%= g.brand_id %>'
+                                <%- g.brand_id==oneGpu.gpu_brand ? "selected='selected'" : "" %>
+                        > <%= g.brand_name %></option>
+                    <% } %>
+                </select>
+            </td></tr>
+
+        <tr><td>Model:</td>
+            <td><input type='text' name='gpu_model' value='<%= oneGpu.gpu_model %>' /></td></tr>
+
+        <tr><td>Fill-rate pixel:</td>
+            <td><input type='number' name='gpu_fillrate_pixel' value='<%= oneGpu.gpu_fillrate_pixel %>' /></td></tr>
+
+        <tr><td>CU:</td>
+            <td><input type='number' name='gpu_cu' value='<%= oneGpu.gpu_cu %>' /></td></tr>
+
+        <tr><td>Memory:</td>
+            <td><input type='number' name='gpu_memory' value='<%= oneGpu.gpu_memory %>' /></td></tr>
+
+
+    </table>
+</form>
+
+</body>
+</html>
