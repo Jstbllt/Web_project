@@ -15,7 +15,7 @@ module.exports = {
     async getAllCPU(){
         try {
             conn = await pool.getConnection();
-            sql = "SELECT * FROM cpu";
+            sql = "SELECT * FROM cpu INNER JOIN brands ON cpu_brand=brand_id";
             const rows = await conn.query(sql);
             conn.end();
             return rows;
@@ -31,10 +31,9 @@ module.exports = {
             // sql = "SELECT * FROM computers INNER JOIN brands ON computer_brand=brand_id WHERE computer_id = "+computerId; // SQL INJECTION => !!!!ALWAYS!!!! sanitize user input!
             // escape input OR prepared statements OR use orm
             sql = "SELECT * FROM cpu INNER JOIN brands ON cpu_brand=brand_id WHERE cpu_id = ?";
-
             const rows = await conn.query(sql, cpuId);
             conn.end();
-            console.log("ROWS FETCHED: " + rows.length);
+            console.log("ROWS FETCHED: "+rows.length);
             if (rows.length == 1) {
                 return rows[0];
             } else {

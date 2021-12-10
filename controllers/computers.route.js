@@ -35,21 +35,22 @@ async function computerShowAction(request, response) {
 async function computerEditAction(request, response) {
     // response.send("EDIT ACTION");
     var brands = await brandRepo.getAllBrands();
-
     var cpus = await cpuRepo.getAllCPU();
+    var gpu = await gpuRepo.getAllGPU();
+
     var cpuId = request.params.cpuId;
+    console.log(cpu);
     if (cpuId!=="0")
         var cpu = await cpuRepo.getOneCpu(cpuId);
     else
         var cpu = cpuRepo.getBlankCpu();
-
-    var gpu = await gpuRepo.getAllGPU();
 
     var computerId = request.params.computerId;
     if (computerId!=="0")
         var computer = await computerRepo.getOneComputer(computerId);
     else
         var computer = computerRepo.getBlankComputer();
+
     response.render("computers_edit", { "oneComputer": computer, "oneCpu": cpu, "brands": brands, "cpu": cpus, "gpu": gpu  });
 }
 async function computerDelAction(request, response) {
