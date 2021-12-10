@@ -14,10 +14,32 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 
     <!-- Add static CSS/JS references... -->
-    <!-- <link rel="stylesheet" href="/static/some.css"> -->
-    <style type='text/css'>
-        body { margin: 10px; }
-    </style>
+    <link rel="stylesheet" href="/static/style.css">
+
 </head>
 <body>
-    <img src='/static/header.jpg' style='float:right' />
+    <header>
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <!-- LOGO -->
+            <a class="navbar-brand" href="../views/index.ejs">
+                <img src="../static/img/logo.PNG" alt="illustration" id="logo">
+            </a>
+
+            <div class="collapse navbar-collapse">
+                <div class="navbar-collapse"> <!-- navbar-nav for a full-height and lightweight navigation (including support for dropdowns)-->
+                    <a class="nav-item nav-link" href='../'>HOME</a>
+                    <a class="nav-item nav-link" href='../computers'>COMPUTERS</a>
+                    <a class="nav-item nav-link" href="../views/cpu_list.ejs">CPU</a>
+                    <a class="nav-item nav-link" href="../views/gpu_list.ejs">GPU</a>
+                    <a class="nav-item nav-link" href="">CONTACT</a>
+                    <a class="nav-item nav-link" href="">LOGIN</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!--<div>
+        <img src="../static/img/logo.PNG" alt="illustration" id="logo">
+    </div>-->
+
