@@ -1,0 +1,61 @@
+/*------------------------------------ STRUCTURE OF THE PAGE ------------------------------------------*/
+
+html {
+    line-height: 1.4;
+}
+
+body {
+    margin: 0;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    font-family: "Corbel", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    height: 15vh;     /* Height equals 15% of viewport height. */
+}
+
+.footer {
+    font-size: small;
+    text-align: center;
+    padding: 2%;
+}
+
+/*-------------------------------------------- ELEMENTS -----------------------------------------------*/
+.nav-link{
+    color: black;
+}
+
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
+a:hover {
+    color: slateblue;
+}
+
+button {
+    border: none;
+    box-shadow: 2px 2px lightgrey;
+    padding: 1%;
+    border-radius: 5%;
+}
+
+button:hover{
+    background-color: grey;
+}
+
+/*------------------------------------ SPECIFIC CLASSES/ELEMENTS ----------------------------------------*/
+
+#logo {                        /* First logo (Header) */
+    width: 15vw;
+    height: 10vh;
+}
