@@ -21,7 +21,6 @@ function computerRootAction(request, response) {
 async function computerListAction(request, response) {
     // response.send("LIST ACTION");
     var computers = await computerRepo.getAllComputers();
-    // console.log(computers);
     var flashMessage = request.session.flashMessage;
     request.session.flashMessage = "";
     
@@ -38,23 +37,17 @@ async function computerEditAction(request, response) {
     var cpus = await cpuRepo.getAllCPU();
     var gpu = await gpuRepo.getAllGPU();
 
-    var cpuId = request.params.cpuId;
-    console.log(cpu);
-    if (cpuId!=="0")
-        var cpu = await cpuRepo.getOneCpu(cpuId);
-    else
-        var cpu = cpuRepo.getBlankCpu();
-
     var computerId = request.params.computerId;
     if (computerId!=="0")
         var computer = await computerRepo.getOneComputer(computerId);
     else
         var computer = computerRepo.getBlankComputer();
 
-    response.render("computers_edit", { "oneComputer": computer, "oneCpu": cpu, "brands": brands, "cpu": cpus, "gpu": gpu  });
+    response.render("computers_edit", { "oneComputer": computer, "brands": brands, "cpu": cpus, "gpu": gpu  });
 }
 async function computerDelAction(request, response) {
     // response.send("DEL ACTION");
+
     // TODO: remove extras for computer, unless the computer cannot be removed!!!
     var numRows = await computerRepo.delOneComputer(request.params.computerId);
     request.session.flashMessage = "ROWS DELETED: "+numRows;
@@ -63,14 +56,17 @@ async function computerDelAction(request, response) {
 async function computerUpdateAction(request, response) {
     // response.send("UPDATE ACTION");
     var computerId = request.params.computerId;
-    if (computerId==="0") computerId = await computerRepo.addOnecComputer(request.body.computer_brand);
-    var isFancy = request.body.computer_isFancy === undefined ? 0 : 1;
+    if (computerId==="0") computerId = await computerRepo.addOneComputer(request.body.computer_brand);
+    // ATTENTION l-59 et l-62 pour le request.body.computer_brand, d'un côté add et de l'autre edit
     var numRows = await computerRepo.editOneComputer(computerId,
         request.body.computer_brand,
-        request.body.computer_name,
-        request.body.computer_baseprice,
-        isFancy, 
-        request.body.computer_realPrice);
+        request.body.computer_model,
+        request.body.computer_cpu,
+        request.body.computer_gpu,
+        request.body.computer_storage,
+        request.body.computer_ram,
+        request.body.computer_size,
+        request.body.computer_price,);
 
     request.session.flashMessage = "ROWS UPDATED: "+numRows;
     response.redirect("/computers/list");

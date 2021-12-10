@@ -1,0 +1,41 @@
+<!-- views/cpus_edit.ejs -->
+<!-- RECEIVES: oneComputer [a single computer object] + brands [array of brand objects] -->
+<%- include("partial_headers.ejs"); %>
+
+<h1>Single CPU editor form</h1>
+
+<p><a href='/cpus/list'>Back to the list</a></p>
+<!-- body-parser ==> we cannot use multipart/form-data ==> no file uploads -->
+<form action='/cpus/update/<%= oneCpu.cpu_id %>' method='post'
+      enctype='application/x-www-form-urlencoded'>
+
+    <table class="table table-striped table-bordered table-hover">
+        <tr><td>Brand:</td>
+            <td>
+                <select name='cpu_brand'>
+                    <% for (var c of cpus) { %>
+                        <option value='<%= c.brand_id %>'
+                                <%- c.brand_id==oneCpu.cpu_brand ? "selected='selected'" : "" %>
+                        > <%= c.brand_name %></option>
+                    <% } %>
+                </select>
+            </td></tr>
+
+        <tr><td>Model:</td>
+            <td><input type='text' name='cpu_model' value='<%= oneCpu.cpu_model %>' /></td></tr>
+
+        <tr><td>Base Frequency:</td>
+            <td><input type='number' name='cpu_basefrequency' value='<%= oneCpu.cpu_basefrequency %>' /></td></tr>
+
+        <tr><td>Boost Frequency:</td>
+            <td><input type='number' name='cpu_boostfrequency' value='<%= oneCpu.cpu_boostfrequency %>' /></td></tr>
+
+        <tr><td>Cores:</td>
+            <td><input type='number' name='cpu_cores' value='<%= oneCpu.cpu_cores %>' /></td></tr>
+
+
+    </table>
+</form>
+
+</body>
+</html>

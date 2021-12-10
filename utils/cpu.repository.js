@@ -1,6 +1,5 @@
 pool = require("../utils/db.js");
 
-
 module.exports = {
     getBlankCpu(){ // defines the entity model
         return {
@@ -44,4 +43,45 @@ module.exports = {
             throw err;
         }
     },
-}
+
+    async delOneCpu(cpuId){
+        try {
+            conn = await pool.getConnection();
+            sql = "DELETE FROM cpu WHERE cpuId = ?";
+            const okPacket = await conn.query(sql, cpuId); // affectedRows, insertId
+            conn.end();
+            console.log(okPacket);
+            return okPacket.affectedRows;
+        }
+        catch (err) {
+            throw err;
+        }
+    },
+    async addOneCpu(brandId){ // ATTENTION QUEL PARA ???
+        try {
+            conn = await pool.getConnection();
+            sql = "INSERT INTO computers (cpu_id, computer_brand) VALUES (NULL, ?) ";
+            const okPacket = await conn.query(sql, brandId); // affectedRows, insertId
+            conn.end();
+            console.log(okPacket);
+            return okPacket.insertId;
+        }
+        catch (err) {
+            throw err;
+        }
+    },
+    async editOneCpu(cpuId, cpuBrand, cpuModel, cpuBaseFrequency, cpuBoostFrequency, cpuCores){
+        try {
+            conn = await pool.getConnection();
+            sql = "UPDATE cpu SET cpuBrand=?, cpuModel=?, cpuBaseFrequency=?, cpuBoostFrequency=?, cpuCores=?, WHERE cpu_id=? "; // TODO: named parameters? :something
+            const okPacket = await conn.query(sql,
+                [cpuBrand, cpuModel, cpuBaseFrequency, cpuBoostFrequency, cpuCores]);
+            conn.end();
+            console.log(okPacket);
+            return okPacket.affectedRows;
+        }
+        catch (err) {
+            throw err;
+        }
+    }
+};
