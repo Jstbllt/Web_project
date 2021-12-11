@@ -21,7 +21,7 @@ module.exports = {
             conn = await pool.getConnection();
             sql = "SELECT * FROM computers " +
                 "INNER JOIN brands ON computer_brand=brand_id "+
-                "INNER JOIN cpu ON computer_cpu=cpu_id "+
+                "INNER JOIN cpu ON computer_cpu=cpu_id " +
                 "LEFT OUTER JOIN gpu ON computer_gpu=gpu_id ";
             const rows = await conn.query(sql);
             conn.end();
@@ -35,9 +35,10 @@ module.exports = {
     async getOneComputer(computerId){
         try {
             conn = await pool.getConnection();
-            // sql = "SELECT * FROM computers INNER JOIN brands ON computer_brand=brand_id WHERE computer_id = "+computerId; // SQL INJECTION => !!!!ALWAYS!!!! sanitize user input!
-            // escape input OR prepared statements OR use orm
-            sql = "SELECT * FROM computers INNER JOIN brands ON computer_brand=brand_id WHERE computer_id = ?";
+            sql = "SELECT * FROM computers " +
+                "INNER JOIN cpu ON computer_cpu=cpu_id " +
+                "LEFT OUTER JOIN gpu ON computer_gpu=gpu_id " +
+                "INNER JOIN brands ON computer_brand=brand_id WHERE computer_id = ?";
             const rows = await conn.query(sql, computerId);
             conn.end();
             console.log("ROWS FETCHED: "+rows.length);

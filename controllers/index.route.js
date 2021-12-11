@@ -5,10 +5,10 @@ const computerRepo = require('../utils/index.repository');
 
 router.get('/', computerRootAction);
 
-// http://localhost:9000/home
+// http://localhost:9000/index
 function computerRootAction(request, response) {
     //response.send("ROOT ACTION");
-    response.redirect("/home");
+    response.redirect("/index");
 }
 
 module.exports = router;
