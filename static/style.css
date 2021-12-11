@@ -6,18 +6,27 @@ html {
 
 body {
     margin: 0;
-    padding-left: 1vw;
-    padding-right: 1vw;
     font-family: "Corbel", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
+    background: lightgray;
 }
 
 header {
     position: sticky;
+    width: 100vw;
     top: 0;
-    height: 15vh;     /* Height equals 15% of viewport height. */
+    height: max-content;     /* Height equals 15% of viewport height. */
+    background: white;
+}
+
+.main{
+    padding: 1%;
+    min-height: 100vh;   /* Min-height equals viewport height. */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;   /* Tells to .content to take all available space in order to push the footer at the bottom of the page. */
 }
 
 .footer {
@@ -57,5 +66,11 @@ button:hover{
 
 #logo {                        /* First logo (Header) */
     width: 15vw;
-    height: 10vh;
+    height: auto;
+    margin-left: 1vw;
+}
+
+#banner{
+    width: 97vw;
+    height: auto;
 }
