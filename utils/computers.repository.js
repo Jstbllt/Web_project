@@ -19,7 +19,10 @@ module.exports = {
     async getAllComputers(){
         try {
             conn = await pool.getConnection();
-            sql = "SELECT * FROM computers INNER JOIN brands ON computer_brand=brand_id";
+            sql = "SELECT * FROM computers " +
+                "INNER JOIN brands ON computer_brand=brand_id "+
+                "INNER JOIN cpu ON computer_cpu=cpu_id "+
+                "LEFT OUTER JOIN gpu ON computer_gpu=gpu_id ";
             const rows = await conn.query(sql);
             conn.end();
             console.log("ROWS FETCHED: "+rows.length);

@@ -30,8 +30,8 @@
         <td><%= c.computer_id %></td>
         <td><%= c.brand_name %></td>
         <td><%= c.computer_model %></td>
-        <td><%= c.computer_cpu %></td>
-        <td><%= c.computer_gpu %></td>
+        <td><%= c.cpu_model %></td>
+        <td><%= c.gpu_model %></td>
         <td><%= c.computer_storage %></td>
         <td><%= c.computer_ram %></td>
         <td><%= c.computer_size %></td>
@@ -42,5 +42,4 @@
     </tr>
 <% } %>
 </table>
-</body>
-</html>
+<%- include("partial_footer.ejs"); %>

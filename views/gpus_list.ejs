@@ -25,7 +25,7 @@
     <% for (var g of gpus) { %>
         <tr>
             <td><%= g.gpu_id %></td>
-            <td><%= g.gpu_brand %></td>
+            <td><%= g.brand_name %></td>
             <td><%= g.gpu_model %></td>
             <td><%= g.gpu_fillrate_pixel %></td>
             <td><%= g.gpu_cu %></td>
@@ -36,5 +36,4 @@
         </tr>
     <% } %>
 </table>
-</body>
-</html>
+<%- include("partial_footer.ejs"); %>
