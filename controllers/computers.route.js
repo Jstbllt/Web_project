@@ -22,16 +22,16 @@ async function computerListAction(request, response) {
     // response.send("LIST ACTION");
     var computers = await computerRepo.getAllComputers();
     var brands = await brandRepo.getAllBrands();
-    var cpus = await cpuRepo.getAllCPU();
     var flashMessage = request.session.flashMessage;
     request.session.flashMessage = "";
     
-    response.render("computers_list", { "computers": computers, "brands": brands, "cpus": cpus, "flashMessage": flashMessage });
+    response.render("computers_list", { "computers": computers, "brands": brands, "flashMessage": flashMessage });
 }
 async function computerShowAction(request, response) {
     // response.send("SHOW ACTION");
     var oneComputer = await computerRepo.getOneComputer(request.params.computerId);
-    response.render("computers_show", { "oneComputer": oneComputer });
+    var brands = await brandRepo.getAllBrands();
+    response.render("computers_show", { "oneComputer": oneComputer, "brands": brands });
 }
 async function computerAddAction(request, response) {
     // response.send("ADD ACTION");
