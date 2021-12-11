@@ -10,7 +10,7 @@ router.get('/', computerRootAction);
 router.get('/list', computerListAction);
 router.get('/show/:computerId', computerShowAction);
 router.get('/del/:computerId', computerDelAction);
-router.get('/edit/:computerId', computerEditAction);
+router.get('/add/:computerId', computerAddAction);
 router.post('/update/:computerId', computerUpdateAction);
 
 // http://localhost:9000/computers
@@ -21,21 +21,24 @@ function computerRootAction(request, response) {
 async function computerListAction(request, response) {
     // response.send("LIST ACTION");
     var computers = await computerRepo.getAllComputers();
+    var brands = await brandRepo.getAllBrands();
+    var cpus = await cpuRepo.getAllCPU();
     var flashMessage = request.session.flashMessage;
     request.session.flashMessage = "";
     
-    response.render("computers_list", { "computers": computers, "flashMessage": flashMessage });
+    response.render("computers_list", { "computers": computers, "brands": brands, "cpus": cpus, "flashMessage": flashMessage });
 }
 async function computerShowAction(request, response) {
     // response.send("SHOW ACTION");
     var oneComputer = await computerRepo.getOneComputer(request.params.computerId);
     response.render("computers_show", { "oneComputer": oneComputer });
 }
-async function computerEditAction(request, response) {
-    // response.send("EDIT ACTION");
+async function computerAddAction(request, response) {
+    // response.send("ADD ACTION");
     var brands = await brandRepo.getAllBrands();
     var cpus = await cpuRepo.getAllCPU();
     var gpu = await gpuRepo.getAllGPU();
+
 
     var computerId = request.params.computerId;
     if (computerId!=="0")
@@ -43,7 +46,7 @@ async function computerEditAction(request, response) {
     else
         var computer = computerRepo.getBlankComputer();
 
-    response.render("computers_edit", { "oneComputer": computer, "brands": brands, "cpu": cpus, "gpu": gpu  });
+    response.render("computers_add", { "oneComputer": computer, "brands": brands, "cpu": cpus, "gpu": gpu  });
 }
 async function computerDelAction(request, response) {
     // response.send("DEL ACTION");

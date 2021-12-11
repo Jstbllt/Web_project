@@ -1,4 +1,4 @@
-<!-- views/computers_edit.ejs -->
+<!-- views/computers_add.ejs -->
 <!-- RECEIVES: oneComputer [a single computer object] + brands [array of brand objects] -->
 <%- include("partial_headers.ejs"); %>
 
@@ -57,7 +57,8 @@
 
     <tr><td>Total price (€):</td>
         <td><input type='number' name='computer_price' value='<%= oneComputer.computer_price %>' /></td></tr>
-    <tr><td colspan='2'> <input type='submit' value='SEND' /> </td></tr>
+
+    <tr><td colspan='2'> <input type='submit' value='SEND' onclick= /> </td></tr>
 </table>
 </form>
 
