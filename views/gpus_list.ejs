@@ -2,12 +2,12 @@
 <!-- RECEIVES: computers [an array of computer objects] + flashMessage [string, the error message] -->
 <%- include("partial_headers.ejs"); %>
 
-<h1>List of Gpu</h1>
+<h1>List of GPU</h1>
 <% if (flashMessage) { %>
     <p style='color:red'><%= flashMessage %></p>
 <% } %>
 
-<p><a href='/gpus/edit/0'>Add a new gpu</a></p>
+<p><a href='/gpus/edit/0'>Add a new GPU</a></p>
 
 <table class="table table-striped table-bordered table-hover">
     <tr>

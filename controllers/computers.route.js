@@ -10,7 +10,7 @@ router.get('/', computerRootAction);
 router.get('/list', computerListAction);
 router.get('/show/:computerId', computerShowAction);
 router.get('/del/:computerId', computerDelAction);
-router.get('/add/:computerId', computerAddAction);
+router.get('/edit/:computerId', computerEditAction);
 router.post('/update/:computerId', computerUpdateAction);
 
 // http://localhost:9000/computers
@@ -33,12 +33,12 @@ async function computerShowAction(request, response) {
     var brands = await brandRepo.getAllBrands();
     response.render("computers_show", { "oneComputer": oneComputer, "brands": brands });
 }
-async function computerAddAction(request, response) {
-    // response.send("ADD ACTION");
-    var brands = await brandRepo.getAllBrands();
-    var cpus = await cpuRepo.getAllCPU();
-    var gpu = await gpuRepo.getAllGPU();
 
+async function computerEditAction(request, response) {
+    // response.send("EDIT ACTION");
+    var cpus = await cpuRepo.getAllCPU();
+    var gpus = await gpuRepo.getAllGPU();
+    var brands = await brandRepo.getAllBrands();
 
     var computerId = request.params.computerId;
     if (computerId!=="0")
@@ -46,8 +46,9 @@ async function computerAddAction(request, response) {
     else
         var computer = computerRepo.getBlankComputer();
 
-    response.render("computers_add", { "oneComputer": computer, "brands": brands, "cpu": cpus, "gpu": gpu  });
+    response.render("computers_edit", { "oneComputer": computer, "brands": brands, "cpu": cpus, "gpu": gpus });
 }
+
 async function computerDelAction(request, response) {
     // response.send("DEL ACTION");
 
@@ -59,8 +60,9 @@ async function computerDelAction(request, response) {
 async function computerUpdateAction(request, response) {
     // response.send("UPDATE ACTION");
     var computerId = request.params.computerId;
-    if (computerId==="0") computerId = await computerRepo.addOneComputer(request.body.computer_brand);
-    // ATTENTION l-59 et l-62 pour le request.body.computer_brand, d'un côté add et de l'autre edit
+    if (computerId==="0")
+        computerId = await computerRepo.addOneComputer(request.body.computer_brand,request.body.computer_gpu,request.body.computer_cpu);
+
     var numRows = await computerRepo.editOneComputer(computerId,
         request.body.computer_brand,
         request.body.computer_model,

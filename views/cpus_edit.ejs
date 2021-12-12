@@ -2,7 +2,7 @@
 <!-- RECEIVES: oneComputer [a single computer object] + brands [array of brand objects] -->
 <%- include("partial_headers.ejs"); %>
 
-<h1>Single CPU editor form</h1>
+<h1>Add a new CPU</h1>
 
 <p><a href='/cpus/list'>Back to the list</a></p>
 <!-- body-parser ==> we cannot use multipart/form-data ==> no file uploads -->
@@ -13,7 +13,7 @@
         <tr><td>Brand:</td>
             <td>
                 <select name='cpu_brand'>
-                    <% for (var c of cpus) { %>
+                    <% for (var c of cpu) { %>
                         <option value='<%= c.brand_id %>'
                                 <%- c.brand_id==oneCpu.cpu_brand ? "selected='selected'" : "" %>
                         > <%= c.brand_name %></option>
@@ -33,6 +33,7 @@
         <tr><td>Cores:</td>
             <td><input type='number' name='cpu_cores' value='<%= oneCpu.cpu_cores %>' /></td></tr>
 
+        <tr><td colspan='2'> <input type='submit' value='SEND'/> </td></tr>
 
     </table>
 </form>

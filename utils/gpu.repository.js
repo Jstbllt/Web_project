@@ -3,14 +3,15 @@ pool = require("../utils/db.js");
 module.exports = {
     getBlankGpu(){ // defines the entity model
         return {
-            "cpu_id": 0,
-            "cpu_brand": 0,
-            "cpu_model": "XXXX",
-            "cpu_basefrequency": 0,
-            "cpu_boostfrequency": 0,
-            "cpu_cores": 0
+            "gpu_id": 0,
+            "gpu_brand": 0,
+            "gpu_model": "XXXX",
+            "gpu_fillrate_pixel": 0,
+            "gpu_cu": 0,
+            "gpu_memory": 0
         };
     },
+
     async getAllGPU(){
         try {
             conn = await pool.getConnection();
@@ -48,7 +49,7 @@ module.exports = {
     async delOneGpu(gpuId){
         try {
             conn = await pool.getConnection();
-            sql = "DELETE FROM gpu WHERE gpuId = ?";
+            sql = "DELETE FROM gpu WHERE gpu_id = ?";
             const okPacket = await conn.query(sql, gpuId); // affectedRows, insertId
             conn.end();
             console.log(okPacket);
@@ -61,7 +62,7 @@ module.exports = {
     async addOneGpu(brandId){ // ATTENTION QUEL PARA ???
         try {
             conn = await pool.getConnection();
-            sql = "INSERT INTO computers (gpu_id, computer_brand) VALUES (NULL, ?) ";
+            sql = "INSERT INTO gpu (gpu_id, gpu_brand) VALUES (NULL, ?) ";
             const okPacket = await conn.query(sql, brandId); // affectedRows, insertId
             conn.end();
             console.log(okPacket);

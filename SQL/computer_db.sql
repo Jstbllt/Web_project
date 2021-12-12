@@ -17,7 +17,7 @@ create table cpu (
     cpu_brand int not null,
     cpu_model varchar(100) not null,
     cpu_basefrequency double not null,
-    cpu_boostfrequency double,
+    cpu_boostfrequency double not null,
     cpu_cores int not null,
     constraint fk_cpu foreign key (cpu_brand) references brands(brand_id)
 );

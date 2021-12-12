@@ -13,10 +13,10 @@ router.get('/del/:cpuId', cpuDelAction);
 router.get('/edit/:cpuId', cpuEditAction);
 router.post('/update/:cpuId', cpuUpdateAction);
 
-// http://localhost:9000/computers
+// http://localhost:9000/cpus
 function cpuRootAction(request, response) {
     //response.send("ROOT ACTION");
-    response.redirect("/cpu/list");
+    response.redirect("/cpus/list");
 }
 async function cpuListAction(request, response) {
     // response.send("LIST ACTION");
@@ -35,19 +35,19 @@ async function cpuEditAction(request, response) {
     // response.send("EDIT ACTION");
     var brands = await brandRepo.getAllBrands();
     var cpus = await cpuRepo.getAllCPU();
+    var gpus = await gpuRepo.getAllGPU();
 
     var cpuId = request.params.cpuId;
-    console.log(cpu);
     if (cpuId!=="0")
         var cpu = await cpuRepo.getOneCpu(cpuId);
     else
         var cpu = cpuRepo.getBlankCpu();
 
-    response.render("cpus_edit", { "oneComputer": computer, "oneCpu": cpu, "brands": brands, "cpu": cpus, "gpu": gpu  });
+    response.render("cpus_edit", { "oneCpu": cpu, "brands": brands, "cpu": cpus, "gpu": gpus  });
 }
 async function cpuDelAction(request, response) {
     // response.send("DEL ACTION");
-    // TODO: remove extras for cou, unless the cpu cannot be removed!!!
+    // TODO: remove extras for cpu, unless the cpu cannot be removed!!!
     var numRows = await cpuRepo.delOneCpu(request.params.cpuId);
     request.session.flashMessage = "ROWS DELETED: "+numRows;
     response.redirect("/cpus/list");
