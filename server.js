@@ -28,6 +28,6 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json(), bodyParser.urlencoded({ extended: true }));
 app.use("/computers", require("./controllers/computers.route"));
 app.use("/index", require("./controllers/index.route"));
-app.use("/cpu", require("./controllers/cpu.route"));
-app.use("/gpu", require("./controllers/gpu.route"));
+app.use("/cpus", require("./controllers/cpu.route"));
+app.use("/gpus", require("./controllers/gpu.route"));
 app.use("/static", express.static(__dirname + '/static'));

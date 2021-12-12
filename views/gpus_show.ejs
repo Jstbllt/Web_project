@@ -4,13 +4,13 @@
 <!-- Security problems: SQL Injection, XSS Cross Site Scripting  -->
 <%- include("partial_headers.ejs"); %>
 
-<h1>Single Computer Datasheet</h1>
+<h1>Single GPU Datasheet</h1>
 
 <p><a href='/gpus/list'>Back to the list</a></p>
 
 <table class="table table-striped table-bordered table-hover">
     <tr><td>ID:</td><td> <%= oneGpu.gpu_id %> </td></tr>
-    <tr><td>Brand:</td><td> <%= oneGpu.gpu_brand %> <%= oneComputer.brand_name %> </td></tr>
+    <tr><td>Brand:</td><td> <%= oneGpu.gpu_brand %> <%= oneGpu.brand_name %> </td></tr>
     <tr><td>Model:</td><td> <%= oneGpu.gpu_model %> </td></tr>
     <tr><td>Fill-rate pixel:</td><td> <%= oneGpu.gpu_fillrate_pixel%></td></tr>
     <tr><td>CU:</td><td> <%= oneGpu.gpu_cu %> </td></tr>

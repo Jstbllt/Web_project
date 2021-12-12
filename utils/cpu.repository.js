@@ -5,7 +5,7 @@ module.exports = {
         return {
             "cpu_id": 0,
             "cpu_brand": 0,
-            "cpu_model": "XXXX",
+            "cpu_model": "xxxx",
             "cpu_basefrequency": 0,
             "cpu_boostfrequency": 0,
             "cpu_cores": 0
@@ -47,7 +47,7 @@ module.exports = {
     async delOneCpu(cpuId){
         try {
             conn = await pool.getConnection();
-            sql = "DELETE FROM cpu WHERE cpuId = ?";
+            sql = "DELETE FROM cpu WHERE cpu_id = ?";
             const okPacket = await conn.query(sql, cpuId); // affectedRows, insertId
             conn.end();
             console.log(okPacket);
@@ -57,10 +57,10 @@ module.exports = {
             throw err;
         }
     },
-    async addOneCpu(brandId){ // ATTENTION QUEL PARA ???
+    async addOneCpu(brandId){
         try {
             conn = await pool.getConnection();
-            sql = "INSERT INTO computers (cpu_id, computer_brand) VALUES (NULL, ?) ";
+            sql = "INSERT INTO cpu (cpu_id, cpu_brand, cpu_model, cpu_basefrequency, cpu_boostfrequency, cpu_cores) VALUES (NULL, ?, '', ?, ?, ?)";
             const okPacket = await conn.query(sql, brandId); // affectedRows, insertId
             conn.end();
             console.log(okPacket);
@@ -73,7 +73,7 @@ module.exports = {
     async editOneCpu(cpuId, cpuBrand, cpuModel, cpuBaseFrequency, cpuBoostFrequency, cpuCores){
         try {
             conn = await pool.getConnection();
-            sql = "UPDATE cpu SET cpuBrand=?, cpuModel=?, cpuBaseFrequency=?, cpuBoostFrequency=?, cpuCores=?, WHERE cpu_id=? "; // TODO: named parameters? :something
+            sql = "UPDATE cpu SET cpuBrand=?, cpuModel='', cpuBaseFrequency=?, cpuBoostFrequency=?, cpuCores=?, WHERE cpu_id=? "; // TODO: named parameters? :something
             const okPacket = await conn.query(sql,
                 [cpuBrand, cpuModel, cpuBaseFrequency, cpuBoostFrequency, cpuCores]);
             conn.end();

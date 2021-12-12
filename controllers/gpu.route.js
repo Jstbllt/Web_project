@@ -16,7 +16,7 @@ router.post('/update/:gpuId', gpuUpdateAction);
 // http://localhost:9000/computers
 function gpuRootAction(request, response) {
     //response.send("ROOT ACTION");
-    response.redirect("/gpu/list");
+    response.redirect("/gpus/list");
 }
 async function gpuListAction(request, response) {
     // response.send("LIST ACTION");
@@ -35,16 +35,15 @@ async function gpuEditAction(request, response) {
     // response.send("EDIT ACTION");
     var brands = await brandRepo.getAllBrands();
     var cpus = await cpuRepo.getAllCPU();
-    var gpu = await gpuRepo.getAllGPU();
+    var gpus = await gpuRepo.getAllGPU();
 
     var gpuId = request.params.gpuId;
-    console.log(gpu);
     if (gpuId!=="0")
         var gpu = await gpuRepo.getOneGpu(gpuId);
     else
-        var gpu = gpuRepo.getBlankCGpu();
+        var gpu = gpuRepo.getBlankGpu();
 
-    response.render("computers_edit", { "oneComputer": computer, "oneCpu": cpu, "brands": brands, "cpu": cpus, "gpu": gpu  });
+    response.render("computers_edit", { "oneGpu": gpu, "brands": brands, "cpu": cpus, "gpu": gpus  });
 }
 async function gpuDelAction(request, response) {
     // response.send("DEL ACTION");

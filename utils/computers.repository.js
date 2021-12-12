@@ -68,7 +68,7 @@ module.exports = {
     async addOneComputer(brandId){
         try {
             conn = await pool.getConnection();
-            sql = "INSERT INTO computers (computer_id, computer_brand) VALUES (NULL, ?) ";
+            sql = "INSERT INTO computers (computer_id, computer_brand, computer_cpu, computer_gpu)VALUES (NULL, ?, ?, ?) ";
             const okPacket = await conn.query(sql, brandId); // affectedRows, insertId
             conn.end();
             console.log(okPacket);
