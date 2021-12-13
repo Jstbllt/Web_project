@@ -13,7 +13,7 @@ router.get('/del/:gpuId', gpuDelAction);
 router.get('/edit/:gpuId', gpuEditAction);
 router.post('/update/:gpuId', gpuUpdateAction);
 
-// http://localhost:9000/computers
+// http://localhost:9000/gpus
 function gpuRootAction(request, response) {
     //response.send("ROOT ACTION");
     response.redirect("/gpus/list");
@@ -43,7 +43,7 @@ async function gpuEditAction(request, response) {
     else
         var gpu = gpuRepo.getBlankGpu();
 
-    response.render("computers_edit", { "oneGpu": gpu, "brands": brands, "cpu": cpus, "gpu": gpus  });
+    response.render("gpus_edit", { "oneGpu": gpu, "brands": brands, "cpu": cpus, "gpu": gpus  });
 }
 async function gpuDelAction(request, response) {
     // response.send("DEL ACTION");
@@ -62,7 +62,7 @@ async function gpuUpdateAction(request, response) {
         request.body.gpu_model,
         request.body.gpu_fillrate_pixel,
         request.body.gpu_cu,
-        request.body.gpu_memory,);
+        request.body.gpu_memory);
 
     request.session.flashMessage = "ROWS UPDATED: "+numRows;
     response.redirect("/gpus/list");
