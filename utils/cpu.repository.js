@@ -20,15 +20,13 @@ module.exports = {
             return rows;
         }
         catch (err) {
-            // TODO: log/send error ...
-            throw err; // return false ???
+            throw err;
         }
     },
     async getOneCpu(cpuId){
         try {
             conn = await pool.getConnection();
-            // sql = "SELECT * FROM computers INNER JOIN brands ON computer_brand=brand_id WHERE computer_id = "+computerId; // SQL INJECTION => !!!!ALWAYS!!!! sanitize user input!
-            // escape input OR prepared statements OR use orm
+
             sql = "SELECT * FROM cpu INNER JOIN brands ON cpu_brand=brand_id WHERE cpu_id = ?";
             const rows = await conn.query(sql, cpuId);
             conn.end();
@@ -48,9 +46,8 @@ module.exports = {
         try {
             conn = await pool.getConnection();
             sql = "DELETE FROM cpu WHERE cpu_id = ?";
-            const okPacket = await conn.query(sql, cpuId); // affectedRows, insertId
+            const okPacket = await conn.query(sql, cpuId);
             conn.end();
-            console.log(okPacket);
             return okPacket.affectedRows;
         }
         catch (err) {
@@ -60,10 +57,9 @@ module.exports = {
     async addOneCpu(brandId){
         try {
             conn = await pool.getConnection();
-            sql = "INSERT INTO cpu (cpu_id, cpu_brand, cpu_model, cpu_basefrequency, cpu_boostfrequency, cpu_cores) VALUES (NULL, ?, '', ?, ?, ?)";
-            const okPacket = await conn.query(sql, brandId); // affectedRows, insertId
+            sql = "INSERT INTO cpu (cpu_id, cpu_brand) VALUES (NULL, ?)";
+            const okPacket = await conn.query(sql, brandId);
             conn.end();
-            console.log(okPacket);
             return okPacket.insertId;
         }
         catch (err) {
@@ -73,11 +69,10 @@ module.exports = {
     async editOneCpu(cpuId, cpuBrand, cpuModel, cpuBaseFrequency, cpuBoostFrequency, cpuCores){
         try {
             conn = await pool.getConnection();
-            sql = "UPDATE cpu SET cpuBrand=?, cpuModel='', cpuBaseFrequency=?, cpuBoostFrequency=?, cpuCores=?, WHERE cpu_id=? "; // TODO: named parameters? :something
+            sql = "UPDATE cpu SET cpu_brand=?, cpu_model=?, cpu_basefrequency=?, cpu_boostfrequency=?, cpu_cores=? WHERE cpu_id=? ";
             const okPacket = await conn.query(sql,
-                [cpuBrand, cpuModel, cpuBaseFrequency, cpuBoostFrequency, cpuCores]);
+                [cpuBrand, cpuModel, cpuBaseFrequency, cpuBoostFrequency, cpuCores, cpuId]);
             conn.end();
-            console.log(okPacket);
             return okPacket.affectedRows;
         }
         catch (err) {

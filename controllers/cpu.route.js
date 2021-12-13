@@ -1,7 +1,6 @@
 // controllers/cpu.route.js
 const express = require('express');
 const router = express.Router();
-const computerRepo = require('../utils/computers.repository');
 const brandRepo = require('../utils/brands.repository');
 const cpuRepo = require('../utils/cpu.repository');
 const gpuRepo = require('../utils/gpu.repository');
@@ -15,11 +14,9 @@ router.post('/update/:cpuId', cpuUpdateAction);
 
 // http://localhost:9000/cpus
 function cpuRootAction(request, response) {
-    //response.send("ROOT ACTION");
     response.redirect("/cpus/list");
 }
 async function cpuListAction(request, response) {
-    // response.send("LIST ACTION");
     var cpus = await cpuRepo.getAllCPU();
     var flashMessage = request.session.flashMessage;
     request.session.flashMessage = "";
@@ -27,12 +24,10 @@ async function cpuListAction(request, response) {
     response.render("cpus_list", { "cpus": cpus, "flashMessage": flashMessage });
 }
 async function cpuShowAction(request, response) {
-    // response.send("SHOW ACTION");
     var oneCpu = await cpuRepo.getOneCpu(request.params.cpuId);
     response.render("cpus_show", { "oneCpu": oneCpu });
 }
 async function cpuEditAction(request, response) {
-    // response.send("EDIT ACTION");
     var brands = await brandRepo.getAllBrands();
     var cpus = await cpuRepo.getAllCPU();
     var gpus = await gpuRepo.getAllGPU();
@@ -46,14 +41,11 @@ async function cpuEditAction(request, response) {
     response.render("cpus_edit", { "oneCpu": cpu, "brands": brands, "cpu": cpus, "gpu": gpus  });
 }
 async function cpuDelAction(request, response) {
-    // response.send("DEL ACTION");
-    // TODO: remove extras for cpu, unless the cpu cannot be removed!!!
     var numRows = await cpuRepo.delOneCpu(request.params.cpuId);
     request.session.flashMessage = "ROWS DELETED: "+numRows;
     response.redirect("/cpus/list");
 }
 async function cpuUpdateAction(request, response) {
-    // response.send("UPDATE ACTION");
     var cpuId = request.params.cpuId;
     if (cpuId==="0") cpuId = await cpuRepo.addOneCpu(request.body.cpu_brand);
 

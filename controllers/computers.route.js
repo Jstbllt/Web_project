@@ -61,7 +61,7 @@ async function computerUpdateAction(request, response) {
     // response.send("UPDATE ACTION");
     var computerId = request.params.computerId;
     if (computerId==="0")
-        computerId = await computerRepo.addOneComputer(request.body.computer_brand,request.body.computer_gpu,request.body.computer_cpu);
+        computerId = await computerRepo.addOneComputer(request.body.computer_brand,request.body.computer_cpu,request.body.computer_gpu);
 
     var numRows = await computerRepo.editOneComputer(computerId,
         request.body.computer_brand,
@@ -71,7 +71,7 @@ async function computerUpdateAction(request, response) {
         request.body.computer_storage,
         request.body.computer_ram,
         request.body.computer_size,
-        request.body.computer_price,);
+        request.body.computer_price);
 
     request.session.flashMessage = "ROWS UPDATED: "+numRows;
     response.redirect("/computers/list");

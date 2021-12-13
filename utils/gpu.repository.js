@@ -21,16 +21,13 @@ module.exports = {
             return rows;
         }
         catch (err) {
-            // TODO: log/send error ...
-            throw err; // return false ???
+            throw err;
         }
     },
 
     async getOneGpu(gpuId){
         try {
             conn = await pool.getConnection();
-            // sql = "SELECT * FROM computers INNER JOIN brands ON computer_brand=brand_id WHERE computer_id = "+computerId; // SQL INJECTION => !!!!ALWAYS!!!! sanitize user input!
-            // escape input OR prepared statements OR use orm
             sql = "SELECT * FROM gpu INNER JOIN brands ON gpu_brand=brand_id WHERE gpu_id = ?";
             const rows = await conn.query(sql, gpuId);
             conn.end();
@@ -50,22 +47,20 @@ module.exports = {
         try {
             conn = await pool.getConnection();
             sql = "DELETE FROM gpu WHERE gpu_id = ?";
-            const okPacket = await conn.query(sql, gpuId); // affectedRows, insertId
+            const okPacket = await conn.query(sql, gpuId);
             conn.end();
-            console.log(okPacket);
             return okPacket.affectedRows;
         }
         catch (err) {
             throw err;
         }
     },
-    async addOneGpu(brandId){ // ATTENTION QUEL PARA ???
+    async addOneGpu(brandId){
         try {
             conn = await pool.getConnection();
             sql = "INSERT INTO gpu (gpu_id, gpu_brand) VALUES (NULL, ?) ";
-            const okPacket = await conn.query(sql, brandId); // affectedRows, insertId
+            const okPacket = await conn.query(sql, brandId);
             conn.end();
-            console.log(okPacket);
             return okPacket.insertId;
         }
         catch (err) {
@@ -75,11 +70,10 @@ module.exports = {
     async editOneGpu(gpuId, gpuBrand, gpuModel, gpuFillratePixel, gpuCu, gpuMemory){
         try {
             conn = await pool.getConnection();
-            sql = "UPDATE gpu SET gpuBrand=?, gpuModel=?, gpuFillratePixel=?, gpuCu=?, gpuMemory=?, WHERE gpu_id=? "; // TODO: named parameters? :something
+            sql = "UPDATE gpu SET gpu_brand=?, gpu_model=?, gpu_fillrate_pixel=?, gpu_cu=?, gpu_memory=? WHERE gpu_id=? ";
             const okPacket = await conn.query(sql,
-                [gpuBrand, gpuModel, gpuFillratePixel, gpuCu, gpuMemory]);
+                [gpuBrand, gpuModel, gpuFillratePixel, gpuCu, gpuMemory, gpuId]);
             conn.end();
-            console.log(okPacket);
             return okPacket.affectedRows;
         }
         catch (err) {

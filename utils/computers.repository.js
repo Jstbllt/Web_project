@@ -1,7 +1,5 @@
 // utils/computers.repository.js
 pool = require("../utils/db.js");
-// JS include = relative to CONTROLLERS 
-// VIEW include = relative to VIEWS
 module.exports = {
     getBlankComputer(){ // defines the entity model
         return {
@@ -58,20 +56,18 @@ module.exports = {
             sql = "DELETE FROM computers WHERE computer_id = ?";
             const okPacket = await conn.query(sql, computerId); // affectedRows, insertId
             conn.end();
-            console.log(okPacket);
             return okPacket.affectedRows;
         }
         catch (err) {
             throw err; 
         }
     },
-    async addOneComputer(brandId){
+    async addOneComputer(brandId, cpuID, gpuID){
         try {
             conn = await pool.getConnection();
             sql = "INSERT INTO computers (computer_id, computer_brand, computer_cpu, computer_gpu)VALUES (NULL, ?, ?, ?) ";
-            const okPacket = await conn.query(sql, brandId); // affectedRows, insertId
+            const okPacket = await conn.query(sql, [brandId,cpuID,gpuID] );
             conn.end();
-            console.log(okPacket);
             return okPacket.insertId;
         }
         catch (err) {
@@ -81,11 +77,10 @@ module.exports = {
     async editOneComputer(computerId, computerBrand, computerModel, computerCpu, computerGpu, computerStorage, computerRam, computerSize, computerPrice){
         try {
             conn = await pool.getConnection();
-            sql = "UPDATE computers SET computer_brand=?, computer_model=?, computer_cpu=?, computer_gpu=?, computer_storage=?, computer_ram=?, computer_size=?, computer_price=?, WHERE computer_id=? "; // TODO: named parameters? :something
+            sql = "UPDATE computers SET computer_brand=?, computer_model=?, computer_cpu=?, computer_gpu=?, computer_storage=?, computer_ram=?, computer_size=?, computer_price=? WHERE computer_id=? "; // TODO: named parameters? :something
             const okPacket = await conn.query(sql, 
                         [computerBrand, computerModel, computerCpu, computerGpu, computerStorage, computerRam, computerSize, computerPrice, computerId]);
             conn.end();
-            console.log(okPacket);
             return okPacket.affectedRows;
         }
         catch (err) {
