@@ -15,11 +15,9 @@ router.post('/update/:computerId', computerUpdateAction);
 
 // http://localhost:9000/computers
 function computerRootAction(request, response) {
-    //response.send("ROOT ACTION");
     response.redirect("/computers/list");
 }
 async function computerListAction(request, response) {
-    // response.send("LIST ACTION");
     var computers = await computerRepo.getAllComputers();
     var brands = await brandRepo.getAllBrands();
     var flashMessage = request.session.flashMessage;
@@ -28,14 +26,12 @@ async function computerListAction(request, response) {
     response.render("computers_list", { "computers": computers, "brands": brands, "flashMessage": flashMessage });
 }
 async function computerShowAction(request, response) {
-    // response.send("SHOW ACTION");
     var oneComputer = await computerRepo.getOneComputer(request.params.computerId);
     var brands = await brandRepo.getAllBrands();
     response.render("computers_show", { "oneComputer": oneComputer, "brands": brands });
 }
 
 async function computerEditAction(request, response) {
-    // response.send("EDIT ACTION");
     var cpus = await cpuRepo.getAllCPU();
     var gpus = await gpuRepo.getAllGPU();
     var brands = await brandRepo.getAllBrands();
@@ -50,15 +46,10 @@ async function computerEditAction(request, response) {
 }
 
 async function computerDelAction(request, response) {
-    // response.send("DEL ACTION");
-
-    // TODO: remove extras for computer, unless the computer cannot be removed!!!
     var numRows = await computerRepo.delOneComputer(request.params.computerId);
-    request.session.flashMessage = "ROWS DELETED: "+numRows;
     response.redirect("/computers/list");
 }
 async function computerUpdateAction(request, response) {
-    // response.send("UPDATE ACTION");
     var computerId = request.params.computerId;
     if (computerId==="0")
         computerId = await computerRepo.addOneComputer(request.body.computer_brand,request.body.computer_cpu,request.body.computer_gpu);
@@ -71,9 +62,9 @@ async function computerUpdateAction(request, response) {
         request.body.computer_storage,
         request.body.computer_ram,
         request.body.computer_size,
-        request.body.computer_price);
+        request.body.computer_price,
+        request.body.computer_stocks);
 
-    request.session.flashMessage = "ROWS UPDATED: "+numRows;
     response.redirect("/computers/list");
 }
 

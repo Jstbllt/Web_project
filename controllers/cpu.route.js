@@ -42,7 +42,6 @@ async function cpuEditAction(request, response) {
 }
 async function cpuDelAction(request, response) {
     var numRows = await cpuRepo.delOneCpu(request.params.cpuId);
-    request.session.flashMessage = "ROWS DELETED: "+numRows;
     response.redirect("/cpus/list");
 }
 async function cpuUpdateAction(request, response) {
@@ -56,7 +55,6 @@ async function cpuUpdateAction(request, response) {
         request.body.cpu_boostfrequency,
         request.body.cpu_cores,);
 
-    request.session.flashMessage = "ROWS UPDATED: "+numRows;
     response.redirect("/cpus/list");
 }
 

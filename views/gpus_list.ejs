@@ -32,7 +32,11 @@
             <td><%= g.gpu_memory %></td>
             <td><a href='/gpus/show/<%= g.gpu_id %>'>Show</a></td>
             <td><a href='/gpus/edit/<%= g.gpu_id %>'>Edit</a></td>
-            <td><a href='/gpus/del/<%= g.gpu_id %>'>Delete</a></td>
+            <td>
+                <% if(g.gpu_id>10){ %>
+                    <button onclick="alert('GPU deleted')"> <a href="/gpus/del/<%= g.gpu_id %>">Delete</a></button>
+                <% } %>
+            </td>
         </tr>
     <% } %>
 </table>

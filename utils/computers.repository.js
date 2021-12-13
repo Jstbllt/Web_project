@@ -11,7 +11,8 @@ module.exports = {
             "computer_storage": 0,
             "computer_ram": 0,
             "computer_size": 0,
-            "computer_price": 0
+            "computer_price": 0,
+            "computer_stocks": 0
         };
     },
     async getAllComputers(){
@@ -74,12 +75,12 @@ module.exports = {
             throw err; 
         }
     },
-    async editOneComputer(computerId, computerBrand, computerModel, computerCpu, computerGpu, computerStorage, computerRam, computerSize, computerPrice){
+    async editOneComputer(computerId, computerBrand, computerModel, computerCpu, computerGpu, computerStorage, computerRam, computerSize, computerPrice, computerStocks){
         try {
             conn = await pool.getConnection();
-            sql = "UPDATE computers SET computer_brand=?, computer_model=?, computer_cpu=?, computer_gpu=?, computer_storage=?, computer_ram=?, computer_size=?, computer_price=? WHERE computer_id=? "; // TODO: named parameters? :something
+            sql = "UPDATE computers SET computer_brand=?, computer_model=?, computer_cpu=?, computer_gpu=?, computer_storage=?, computer_ram=?, computer_size=?, computer_price=?, computer_stocks=? WHERE computer_id=? "; // TODO: named parameters? :something
             const okPacket = await conn.query(sql, 
-                        [computerBrand, computerModel, computerCpu, computerGpu, computerStorage, computerRam, computerSize, computerPrice, computerId]);
+                        [computerBrand, computerModel, computerCpu, computerGpu, computerStorage, computerRam, computerSize, computerPrice, computerStocks, computerId]);
             conn.end();
             return okPacket.affectedRows;
         }
