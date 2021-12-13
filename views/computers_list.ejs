@@ -16,10 +16,8 @@
         <td>Model</td>
         <td>CPU</td>
         <td>GPU</td>
-        <td>Storage</td>
-        <td>RAM</td>
-        <td>Size</td>
         <td>Price</td>
+        <td>Stock</td>
         <td>Show</td>
         <td>Edit</td>
         <td>Delete</td>
@@ -48,7 +46,11 @@
             <td><%= c.computer_stocks %></td>
             <td><a href='/computers/show/<%= c.computer_id %>'>Show</a></td>
             <td><a href='/computers/edit/<%= c.computer_id %>'>Edit</a></td>
-            <td><a href='/computers/del/<%= c.computer_id %>'>Delete</a></td>
+            <td>
+                <% if(c.computer_id>10){ %>
+                    <button onclick="alert('Computer deleted')"> <a href="/computers/del/<%= c.computer_id %>">Delete</a></button>
+                <% } %>
+            </td>
         </tr>
     <% } %>
 </table>

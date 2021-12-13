@@ -60,7 +60,10 @@
     <tr><td>Total price (€):</td>
         <td><input type='number' step="0.1" name='computer_price' value='<%= oneComputer.computer_price %>' /></td></tr>
 
-    <tr><td colspan='2'> <input type='submit' value='SEND'/> </td></tr>
+    <tr><td>Stock (Unit):</td>
+        <td><input type='number' name='computer_stocks' value='<%= oneComputer.computer_stocks %>' /></td></tr>
+
+    <tr><td colspan='2'> <input type='submit' value='SEND' onclick="alert('Computer updated')"/> </td></tr>
 </table>
 </form>
 

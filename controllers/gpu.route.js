@@ -15,11 +15,9 @@ router.post('/update/:gpuId', gpuUpdateAction);
 
 // http://localhost:9000/gpus
 function gpuRootAction(request, response) {
-    //response.send("ROOT ACTION");
     response.redirect("/gpus/list");
 }
 async function gpuListAction(request, response) {
-    // response.send("LIST ACTION");
     var gpus = await gpuRepo.getAllGPU();
     var flashMessage = request.session.flashMessage;
     request.session.flashMessage = "";
@@ -27,12 +25,10 @@ async function gpuListAction(request, response) {
     response.render("gpus_list", { "gpus": gpus, "flashMessage": flashMessage });
 }
 async function gpuShowAction(request, response) {
-    // response.send("SHOW ACTION");
     var oneGpu = await gpuRepo.getOneGpu(request.params.gpuId);
     response.render("gpus_show", { "oneGpu": oneGpu });
 }
 async function gpuEditAction(request, response) {
-    // response.send("EDIT ACTION");
     var brands = await brandRepo.getAllBrands();
     var cpus = await cpuRepo.getAllCPU();
     var gpus = await gpuRepo.getAllGPU();
@@ -46,14 +42,10 @@ async function gpuEditAction(request, response) {
     response.render("gpus_edit", { "oneGpu": gpu, "brands": brands, "cpu": cpus, "gpu": gpus  });
 }
 async function gpuDelAction(request, response) {
-    // response.send("DEL ACTION");
-    // TODO: remove extras for gpu, unless the gpu cannot be removed!!!
     var numRows = await gpuRepo.delOneGpu(request.params.gpuId);
-    request.session.flashMessage = "ROWS DELETED: "+numRows;
     response.redirect("/gpus/list");
 }
 async function gpuUpdateAction(request, response) {
-    // response.send("UPDATE ACTION");
     var gpuId = request.params.gpuId;
     if (gpuId==="0") gpuId = await gpuRepo.addOneGpu(request.body.gpu_brand);
 
@@ -64,7 +56,6 @@ async function gpuUpdateAction(request, response) {
         request.body.gpu_cu,
         request.body.gpu_memory);
 
-    request.session.flashMessage = "ROWS UPDATED: "+numRows;
     response.redirect("/gpus/list");
 }
 
