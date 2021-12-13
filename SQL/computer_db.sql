@@ -9,39 +9,39 @@ DROP TABLE IF EXISTS features;
 
 Create table brands ( 
     brand_id int AUTO_INCREMENT PRIMARY Key ,
-    brand_name varchar(100)
+    brand_name varchar(100) not null DEFAULT NULL
 );
 
 create table cpu (
     cpu_id int AUTO_INCREMENT PRIMARY KEY,
-    cpu_brand int not null,
-    cpu_model varchar(100) not null,
-    cpu_basefrequency double not null,
-    cpu_boostfrequency double not null,
-    cpu_cores int not null,
+    cpu_brand int not null DEFAULT NULL,
+    cpu_model varchar(100) not null DEFAULT NULL,
+    cpu_basefrequency double not null DEFAULT NULL,
+    cpu_boostfrequency double not null DEFAULT NULL,
+    cpu_cores int not null DEFAULT NULL,
     constraint fk_cpu foreign key (cpu_brand) references brands(brand_id)
 );
 
 create table gpu (
     gpu_id int AUTO_INCREMENT PRIMARY KEY,
-    gpu_brand int not null,
-    gpu_model varchar(100) not null,
-    gpu_fillrate_pixel double not null,
-    gpu_cu int not null,
-    gpu_memory int not null,
+    gpu_brand int not null DEFAULT NULL,
+    gpu_model varchar(100) not null DEFAULT NULL,
+    gpu_fillrate_pixel double not null DEFAULT NULL,
+    gpu_cu int not null DEFAULT NULL,
+    gpu_memory int not null DEFAULT NULL,
     constraint fk_gpu foreign key (gpu_brand) references brands(brand_id)
 );
 
 Create table computers(
     computer_id int AUTO_INCREMENT primary key,
-    computer_brand int not null,
-    computer_model varchar(100) not null,
-    computer_cpu int not null,
-    computer_gpu int,
-    computer_storage int not null,
-    computer_ram int not null,
-    computer_size double not null,
-    computer_price int not null,
+    computer_brand int not null DEFAULT NULL,
+    computer_model varchar(100) not null DEFAULT NULL,
+    computer_cpu int not null DEFAULT NULL,
+    computer_gpu int not null DEFAULT NULL,
+    computer_storage int not null DEFAULT NULL,
+    computer_ram int not null DEFAULT NULL,
+    computer_size double not null DEFAULT NULL,
+    computer_price int not null DEFAULT NULL,
     constraint fk_computers1 foreign key (computer_brand) references brands(brand_id),
     constraint fk_computers2 foreign key (computer_cpu) references cpu(cpu_id),
     constraint fk_computers3 foreign key (computer_gpu) references gpu(gpu_id)
@@ -49,14 +49,14 @@ Create table computers(
 
 create table features (
     feat_id int AUTO_INCREMENT primary key,
-    feat_name varchar(100),
-    feat_price int 
+    feat_name varchar(100) not null DEFAULT NULL,
+    feat_price int not null DEFAULT NULL
 );
     
 create table conn (
     conn_id int AUTO_INCREMENT PRIMARY KEY,
-    conn_computer int,
-    conn_feat int,
+    conn_computer int not null DEFAULT NULL,
+    conn_feat int not null DEFAULT NULL,
     CONSTRAINT fk_conn_computer FOREIGN KEY (conn_computer) REFERENCES computers(computer_id),
     CONSTRAINT fk_conn_feat FOREIGN KEY (conn_feat) REFERENCES features(feat_id)
 );
