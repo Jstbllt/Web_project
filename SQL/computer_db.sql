@@ -42,7 +42,7 @@ Create table computers(
     computer_ram int not null DEFAULT 0,
     computer_size double not null DEFAULT 0,
     computer_price int not null DEFAULT 0,
-    computer_stocks int not null DEFAULT 10,
+    computer_stocks int not null DEFAULT 0,
     constraint fk_computers1 foreign key (computer_brand) references brands(brand_id),
     constraint fk_computers2 foreign key (computer_cpu) references cpu(cpu_id),
     constraint fk_computers3 foreign key (computer_gpu) references gpu(gpu_id)
@@ -133,13 +133,21 @@ SELECT * FROM conn;
 
 DROP VIEW if exists AllData;
 CREATE VIEW AllData AS
-	SELECT computer_id, brand_name, computer_model, cpu_brand, cpu_model,
+	SELECT
+	    computer_id,
+	    brand_name,
+	    computer_model,
+	    cpu_brand,
+	    cpu_model,
     	ifnull(gpu_brand, 'NONE') as gpu_brand,
 		ifnull(gpu_model, 'NONE') as gpu_model,
-    computer_storage, computer_ram, computer_size, computer_price,
+        computer_storage,
+        computer_ram,
+        computer_size,
+        computer_price,
 		ifnull(feat_name, 'NO EXTRA') as featureName,
 		ifnull(feat_price, 'NO EXTRA') as featurePrice,
-    computer_stocks
+        computer_stocks
 	FROM brands
 		INNER JOIN computers ON brand_id = computer_brand
         INNER JOIN cpu ON cpu_id = computer_cpu
