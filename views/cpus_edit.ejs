@@ -13,10 +13,12 @@
         <tr><td>Brand:</td>
             <td>
                 <select name='cpu_brand'>
-                    <% for (var c of cpu) { %>
-                        <option value='<%= c.brand_id %>'
-                                <%- c.brand_id==oneCpu.cpu_brand ? "selected='selected'" : "" %>
-                        > <%= c.brand_name %></option>
+                    <% for (var b of brands) { %>
+                        <% if(b.brand_id == 1 || b.brand_id == 11 || b.brand_id == 12) {%>
+                            <option value='<%= b.brand_id %>'
+                                    <%- b.brand_id==oneCpu.cpu_brand ? "selected='selected'" : "" %>
+                            > <%= b.brand_name %> </option>
+                        <% } %>
                     <% } %>
                 </select>
             </td></tr>
@@ -25,10 +27,10 @@
             <td><input type='text' name='cpu_model' value='<%= oneCpu.cpu_model %>' /></td></tr>
 
         <tr><td>Base Frequency:</td>
-            <td><input type='number' name='cpu_basefrequency' value='<%= oneCpu.cpu_basefrequency %>' /></td></tr>
+            <td><input type='number' step="0.1" name='cpu_basefrequency' value='<%= oneCpu.cpu_basefrequency %>' /></td></tr>
 
         <tr><td>Boost Frequency:</td>
-            <td><input type='number' name='cpu_boostfrequency' value='<%= oneCpu.cpu_boostfrequency %>' /></td></tr>
+            <td><input type='number' step="0.1" name='cpu_boostfrequency' value='<%= oneCpu.cpu_boostfrequency %>' /></td></tr>
 
         <tr><td>Cores:</td>
             <td><input type='number' name='cpu_cores' value='<%= oneCpu.cpu_cores %>' /></td></tr>

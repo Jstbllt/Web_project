@@ -9,39 +9,40 @@ DROP TABLE IF EXISTS features;
 
 Create table brands ( 
     brand_id int AUTO_INCREMENT PRIMARY Key ,
-    brand_name varchar(100) not null DEFAULT NULL
+    brand_name varchar(100) not null DEFAULT ''
 );
 
 create table cpu (
     cpu_id int AUTO_INCREMENT PRIMARY KEY,
-    cpu_brand int not null DEFAULT NULL,
-    cpu_model varchar(100) not null DEFAULT NULL,
-    cpu_basefrequency double not null DEFAULT NULL,
-    cpu_boostfrequency double not null DEFAULT NULL,
-    cpu_cores int not null DEFAULT NULL,
+    cpu_brand int not null DEFAULT 0,
+    cpu_model varchar(100) not null DEFAULT '',
+    cpu_basefrequency double not null DEFAULT 0,
+    cpu_boostfrequency double DEFAULT 0,
+    cpu_cores int not null DEFAULT 0,
     constraint fk_cpu foreign key (cpu_brand) references brands(brand_id)
 );
 
 create table gpu (
     gpu_id int AUTO_INCREMENT PRIMARY KEY,
-    gpu_brand int not null DEFAULT NULL,
-    gpu_model varchar(100) not null DEFAULT NULL,
-    gpu_fillrate_pixel double not null DEFAULT NULL,
-    gpu_cu int not null DEFAULT NULL,
-    gpu_memory int not null DEFAULT NULL,
+    gpu_brand int not null DEFAULT 0,
+    gpu_model varchar(100) not null DEFAULT '',
+    gpu_fillrate_pixel double not null DEFAULT 0,
+    gpu_cu int not null DEFAULT 0,
+    gpu_memory int not null DEFAULT 0,
     constraint fk_gpu foreign key (gpu_brand) references brands(brand_id)
 );
 
 Create table computers(
     computer_id int AUTO_INCREMENT primary key,
-    computer_brand int not null DEFAULT NULL,
-    computer_model varchar(100) not null DEFAULT NULL,
-    computer_cpu int not null DEFAULT NULL,
-    computer_gpu int not null DEFAULT NULL,
-    computer_storage int not null DEFAULT NULL,
-    computer_ram int not null DEFAULT NULL,
-    computer_size double not null DEFAULT NULL,
-    computer_price int not null DEFAULT NULL,
+    computer_brand int not null DEFAULT 0,
+    computer_model varchar(100) not null DEFAULT '',
+    computer_cpu int not null DEFAULT 0,
+    computer_gpu int DEFAULT null,
+    computer_storage int not null DEFAULT 0,
+    computer_ram int not null DEFAULT 0,
+    computer_size double not null DEFAULT 0,
+    computer_price int not null DEFAULT 0,
+    computer_stocks int not null DEFAULT 10,
     constraint fk_computers1 foreign key (computer_brand) references brands(brand_id),
     constraint fk_computers2 foreign key (computer_cpu) references cpu(cpu_id),
     constraint fk_computers3 foreign key (computer_gpu) references gpu(gpu_id)
@@ -49,14 +50,14 @@ Create table computers(
 
 create table features (
     feat_id int AUTO_INCREMENT primary key,
-    feat_name varchar(100) not null DEFAULT NULL,
-    feat_price int not null DEFAULT NULL
+    feat_name varchar(100) not null DEFAULT '',
+    feat_price int not null DEFAULT 0
 );
-    
+
 create table conn (
     conn_id int AUTO_INCREMENT PRIMARY KEY,
-    conn_computer int not null DEFAULT NULL,
-    conn_feat int not null DEFAULT NULL,
+    conn_computer int not null DEFAULT 0,
+    conn_feat int not null DEFAULT 0,
     CONSTRAINT fk_conn_computer FOREIGN KEY (conn_computer) REFERENCES computers(computer_id),
     CONSTRAINT fk_conn_feat FOREIGN KEY (conn_feat) REFERENCES features(feat_id)
 );
@@ -76,7 +77,7 @@ INSERT INTO brands VALUES
     (11, "Intel"),
     (12, "AMD"),
     (13, "NVIDIA");
-    
+
 INSERT INTO cpu VALUES
     (1,	11,	"Pentium",	1.6, null, 2),
     (2,	11,	"Core i3",	2.1, null, 4),
@@ -102,16 +103,16 @@ INSERT INTO gpu VALUES
     (10, 1,	"M1", 41, 128, 8);
 
 INSERT INTO computers VALUES
-	(1, 2, "VivoBook Pro", 4, 1, 1256, 16, 15.6, 1750),
-	(2,	1, "MacBook Pro", 10, 10, 512, 8, 13, 1679),
-	(3,	1, "MacBook Air", 10, 10, 256, 8, 13, 1129),
-    (4,	7,	"Yoga SLim7", 7, 2, 256, 8, 15.6, 799),		
-    (5,	5,	"ChromeBook", 2, null, 512, 8, 17, 599),
-    (6,	4,	"Surface Pro 7", 4, null, 256, 16, 13, 1700),
-    (7,	8,	"Inspiron", 6, null, 256, 4, 15, 399),
-    (8,	10,	"Blade 15", 9, 5, 1256, 16, 17, 3000),
-    (9,	9,	"GE66 Raider", 8, 9, 1256, 16, 17, 2700),
-    (10, 3,	"Pavilion 15", 1, null, 256, 4, 15, 399);
+	(1, 2, "VivoBook Pro", 4, 1, 1256, 16, 15.6, 1750, 10),
+	(2,	1, "MacBook Pro", 10, 10, 512, 8, 13, 1679, 10),
+	(3,	1, "MacBook Air", 10, 10, 256, 8, 13, 1129, 10),
+    (4,	7,	"Yoga SLim7", 7, 2, 256, 8, 15.6, 799, 10),
+    (5,	5,	"ChromeBook", 2, null, 512, 8, 17, 599, 10),
+    (6,	4,	"Surface Pro 7", 4, null, 256, 16, 13, 1700, 10),
+    (7,	8,	"Inspiron", 6, null, 256, 4, 15, 399, 10),
+    (8,	10,	"Blade 15", 9, 5, 1256, 16, 17, 3000, 10),
+    (9,	9,	"GE66 Raider", 8, 9, 1256, 16, 17, 2700, 11),
+    (10, 3,	"Pavilion 15", 1, null, 256, 4, 15, 399, 12);
 
 INSERT INTO features VALUES
 	(1,	"Touch Screen", 250),
@@ -121,7 +122,7 @@ INSERT INTO features VALUES
     (5,	"UBS-C port", 75);
 
 INSERT INTO conn (conn_computer, conn_feat) VALUES
-	(7,2),(4,4),(2,5),(9,1),(6,4),(10,2),(4,2),(1,4),(4,3),(5,5);
+	(7,2),(3,4),(2,5),(9,1),(6,4),(10,2),(4,2),(1,4),(8,3),(5,5);
 
 SELECT * FROM brands;
 SELECT * FROM cpu;
@@ -129,3 +130,20 @@ SELECT * FROM gpu;
 SELECT * FROM computers;
 SELECT * FROM features;
 SELECT * FROM conn;
+
+DROP VIEW if exists AllData;
+CREATE VIEW AllData AS
+	SELECT computer_id, brand_name, computer_model, cpu_brand, cpu_model,
+    	ifnull(gpu_brand, 'NONE') as gpu_brand,
+		ifnull(gpu_model, 'NONE') as gpu_model,
+    computer_storage, computer_ram, computer_size, computer_price,
+		ifnull(feat_name, 'NO EXTRA') as featureName,
+		ifnull(feat_price, 'NO EXTRA') as featurePrice
+    computer_stocks
+	FROM brands
+		INNER JOIN computers ON brand_id = computer_brand
+        INNER JOIN cpu ON cpu_id = computer_cpu
+        LEFT JOIN gpu ON gpu_id = computer_gpu
+		LEFT JOIN conn ON computer_id=conn_computer
+		LEFT JOIN features ON feat_id = conn_feat;
+SELECT * FROM AllData;

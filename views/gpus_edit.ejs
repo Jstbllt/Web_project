@@ -11,10 +11,12 @@
         <tr><td>Brand:</td>
             <td>
                 <select name='gpu_brand'>
-                    <% for (var g of gpu) { %>
-                        <option value='<%= g.brand_id %>'
-                                <%- g.brand_id==oneGpu.gpu_brand ? "selected='selected'" : "" %>
-                        > <%= g.brand_name %></option>
+                    <% for (var b of brands) { %>
+                        <% if(b.brand_id == 1 || b.brand_id == 12 || b.brand_id == 13) {%>
+                            <option value='<%= b.brand_id %>'
+                                    <%- b.brand_id==oneGpu.gpu_brand ? "selected='selected'" : "" %>
+                            > <%= b.brand_name %> </option>
+                        <% } %>
                     <% } %>
                 </select>
             </td></tr>
@@ -23,7 +25,7 @@
             <td><input type='text' name='gpu_model' value='<%= oneGpu.gpu_model %>' /></td></tr>
 
         <tr><td>Fill-rate pixel:</td>
-            <td><input type='number' name='gpu_fillrate_pixel' value='<%= oneGpu.gpu_fillrate_pixel %>' /></td></tr>
+            <td><input type='number' step="0.1" name='gpu_fillrate_pixel' value='<%= oneGpu.gpu_fillrate_pixel %>' /></td></tr>
 
         <tr><td>CU:</td>
             <td><input type='number' name='gpu_cu' value='<%= oneGpu.gpu_cu %>' /></td></tr>

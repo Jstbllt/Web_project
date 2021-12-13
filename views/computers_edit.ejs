@@ -13,11 +13,13 @@
     <tr><td>Brand:</td>
         <td>
             <select name='computer_brand'>
-              <% for (var b of brands) { %>
-                    <option value='<%= b.brand_id %>' 
-                        <%- b.brand_id==oneComputer.computer_brand ? "selected='selected'" : "" %>
-                    > <%= b.brand_name %></option>
-              <% } %>
+                <% for (var b of brands) { %>
+                    <% if(b.brand_id != 11 && b.brand_id != 12 && b.brand_id != 13) {%>
+                        <option value='<%= b.brand_id %>'
+                                <%- b.brand_id==oneComputer.computer_brand ? "selected='selected'" : "" %>
+                        > <%= b.brand_name %> </option>
+                    <% } %>
+                <% } %>
             </select>
         </td></tr>
 
@@ -52,11 +54,11 @@
     <tr><td>RAM (Go):</td>
         <td><input type='number' name='computer_ram' value='<%= oneComputer.computer_ram %>' /></td></tr>
 
-    <tr><td>Size:</td>
+    <tr><td>Size (Inch):</td>
         <td><input type='number' name='computer_size' value='<%= oneComputer.computer_size %>' /></td></tr>
 
     <tr><td>Total price (€):</td>
-        <td><input type='number' name='computer_price' value='<%= oneComputer.computer_price %>' /></td></tr>
+        <td><input type='number' step="0.1" name='computer_price' value='<%= oneComputer.computer_price %>' /></td></tr>
 
     <tr><td colspan='2'> <input type='submit' value='SEND'/> </td></tr>
 </table>
