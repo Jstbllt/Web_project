@@ -138,7 +138,7 @@ CREATE VIEW AllData AS
 		ifnull(gpu_model, 'NONE') as gpu_model,
     computer_storage, computer_ram, computer_size, computer_price,
 		ifnull(feat_name, 'NO EXTRA') as featureName,
-		ifnull(feat_price, 'NO EXTRA') as featurePrice
+		ifnull(feat_price, 'NO EXTRA') as featurePrice,
     computer_stocks
 	FROM brands
 		INNER JOIN computers ON brand_id = computer_brand
