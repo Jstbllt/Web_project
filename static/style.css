@@ -1,46 +1,38 @@
+/*------------------------------------ FONTS ------------------------------------------*/
+@font-face {
+    font-family: "CaviarDreams";
+    src: url("../static/fonts/caviar_dreams/CaviarDreams.ttf");
+}
+@font-face {
+    font-family: "CaviarDreamsBold";
+    src: url("../static/fonts/caviar_dreams/CaviarDreams_Bold.ttf");
+}
+@font-face {
+    font-family: "CaviarDreamsItalic";
+    src: url("../static/fonts/caviar_dreams/CaviarDreams_Italic.ttf");
+}
+/*------------------------------------*/
+@font-face {
+    font-family: "LouisGeorge";
+    src: url("../static/fonts/louis_george_caf/Louis George Cafe.ttf");
+}
+@font-face {
+    font-family: "LouisGeorgeBold";
+    src: url("../static/fonts/louis_george_caf/Louis George Cafe Bold.ttf");
+}
+@font-face {
+    font-family: "LouisGeorgeItalic";
+    src: url("../static/fonts/louis_george_caf/Louis George Cafe Italic.ttf");
+}
+
 /*------------------------------------ STRUCTURE OF THE PAGE ------------------------------------------*/
 
-html {
-    line-height: 1.4;
-}
-
 body {
-    margin: 0;
-    font-family: "Calibri", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    background: lightgray;
-}
-
-header {
-    position: sticky;
-    width: 100vw;
-    top: 0;
-    height: max-content;     /* Height equals 15% of viewport height. */
-    background: white;
-}
-
-.main{
-    padding: 1%;
-    min-height: 100vh;   /* Min-height equals viewport height. */
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;   /* Tells to .main to take all available space in order to push the footer at the bottom of the page. */
-}
-
-.footer {
-    font-size: small;
-    text-align: center;
-    padding: 2%;
+    font-family: LouisGeorge, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    background: #F2F3F4;
 }
 
 /*-------------------------------------------- ELEMENTS -----------------------------------------------*/
-.nav-link{
-    color: black;
-}
-
-
 a {
     text-decoration: none;
     font-weight: bold;
@@ -51,26 +43,27 @@ a:hover {
     color: slateblue;
 }
 
-button {
-    border: none;
-    box-shadow: 2px 2px lightgrey;
-    padding: 1%;
-    border-radius: 5%;
+.pink{
+    background: #F8BBD0;
 }
 
-button:hover{
-    background-color: grey;
+.blue{
+    background: #D6EAF8;
+}
+
+.yellow{
+    background: #FCF3CF;
 }
 
 /*------------------------------------ SPECIFIC CLASSES/ELEMENTS ----------------------------------------*/
 
-#logo {                        /* First logo (Header) */
+#logo {
     width: 15vw;
     height: auto;
-    margin-left: 1vw;
 }
 
-#banner{
-    width: 97vw;
+#icon{
+    width: 5vw;
     height: auto;
+    margin: 2vw;
 }

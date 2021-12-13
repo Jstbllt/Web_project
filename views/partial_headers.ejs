@@ -23,24 +23,41 @@
 
 <body>
 
-<header>
+<header class="position-sticky t-0 bg-white">
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-sm justify-content-center">
         <!-- LOGO -->
-        <a class="navbar-brand" href="/">
-            <img src="../../static/img/logo.PNG" alt="illustration" id="logo">
-        </a>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="../../static/img/logo.PNG" alt="illustration" id="logo">
+            </a>
+        </div>
+
         <div class="collapse navbar-collapse">
-            <div class="navbar-collapse"> <!-- navbar-nav for a full-height and lightweight navigation (including support for dropdowns)-->
-                <a class="nav-item nav-link" href='../'>HOME</a>
-                <a class="nav-item nav-link" href='../computers'>COMPUTERS</a>
-                <a class="nav-item nav-link" href="../cpus">CPU</a>
-                <a class="nav-item nav-link" href="../gpus">GPU</a>
-                <a class="nav-item nav-link" href="">CONTACT</a>
-                <a class="nav-item nav-link" href="">LOGIN</a>
+            <div class="container-fluid">
+                <!-- Links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href='../'>HOME</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-black" href="#" role="button" data-bs-toggle="dropdown">STOCK</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../computers">COMPUTERS</a></li>
+                            <li><a class="dropdown-item" href="../cpus">CPU</a></li>
+                            <li><a class="dropdown-item" href="../gpus">GPU</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="">CONTACT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="">LOGIN</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 </header>
 
-<section class="main">
+<section class="d-flex flex-column min-vh-100 flex-grow-1">
