@@ -39,7 +39,7 @@ a {
     color: inherit;
 }
 
-a:hover {
+.hotpink,  a:hover {
     color: hotpink;
 }
 
@@ -66,4 +66,10 @@ a:hover {
     width: 5vw;
     height: auto;
     margin: 2vw;
+}
+
+.PP img {
+    height: 13vw;
+    width: 13vw;
+    border-radius: 50%;
 }
