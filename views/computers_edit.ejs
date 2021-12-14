@@ -1,11 +1,10 @@
 <!-- views/computers_edit.ejs -->
-<!-- RECEIVES: oneComputer [a single computer object] + brands [array of brand objects] -->
-<%- include("partial_headers.ejs"); %>
+<%- include("partial_headers_admin.ejs"); %>
 
 <section class="p-3">
 <h1>Add a new computer</h1>
 
-<p><a href='/computers/list'>Back to the list</a></p>
+<p><a href='/computers/list/admin'>Back to the list</a></p>
 <!-- body-parser ==> we cannot use multipart/form-data ==> no file uploads -->
 <form action='/computers/update/<%= oneComputer.computer_id %>' method='post'
             enctype='application/x-www-form-urlencoded'>

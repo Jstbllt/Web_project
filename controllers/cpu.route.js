@@ -9,6 +9,7 @@ router.get('/', cpuRootAction);
 router.get('/list', cpuListAction);
 router.get('/list/admin', cpuListAdminAction);
 router.get('/show/:cpuId', cpuShowAction);
+router.get('/show/admin/:cpuId', cpuShowAdminAction);
 router.get('/del/:cpuId', cpuDelAction);
 router.get('/edit/:cpuId', cpuEditAction);
 router.post('/update/:cpuId', cpuUpdateAction);
@@ -35,6 +36,10 @@ async function cpuListAdminAction(request, response) {
 async function cpuShowAction(request, response) {
     var oneCpu = await cpuRepo.getOneCpu(request.params.cpuId);
     response.render("cpus_show", { "oneCpu": oneCpu });
+}
+async function cpuShowAdminAction(request, response) {
+    var oneCpu = await cpuRepo.getOneCpu(request.params.cpuId);
+    response.render("cpus_show_admin", { "oneCpu": oneCpu });
 }
 async function cpuEditAction(request, response) {
     var brands = await brandRepo.getAllBrands();

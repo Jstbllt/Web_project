@@ -1,6 +1,5 @@
 <!-- views/gpus_list_admin.ejs -->
-<!-- RECEIVES: computers [an array of computer objects] + flashMessage [string, the error message] -->
-<%- include("partial_headers.ejs"); %>
+<%- include("partial_headers_admin.ejs"); %>
 
 <section class="p-3">
 <h1>List of GPU</h1>
@@ -31,7 +30,7 @@
             <td><%= g.gpu_fillrate_pixel %></td>
             <td><%= g.gpu_cu %></td>
             <td><%= g.gpu_memory %></td>
-            <td><a href='/gpus/show/<%= g.gpu_id %>'>Show</a></td>
+            <td><a href='/gpus/show/admin/<%= g.gpu_id %>'>Show</a></td>
             <td><a href='/gpus/edit/<%= g.gpu_id %>'>Edit</a></td>
             <td>
                 <% if(g.gpu_id>10){ %>

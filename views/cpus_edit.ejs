@@ -1,11 +1,10 @@
 <!-- views/cpus_edit.ejs -->
-<!-- RECEIVES: oneComputer [a single computer object] + brands [array of brand objects] -->
-<%- include("partial_headers.ejs"); %>
+<%- include("partial_headers_admin.ejs"); %>
 
 <section class="p-3">
 <h1>Add a new CPU</h1>
 
-<p><a href='/cpus/list'>Back to the list</a></p>
+<p><a href='/cpus/list/admin'>Back to the list</a></p>
 <!-- body-parser ==> we cannot use multipart/form-data ==> no file uploads -->
 <form action='/cpus/update/<%= oneCpu.cpu_id %>' method='post'
       enctype='application/x-www-form-urlencoded'>

@@ -1,0 +1,63 @@
+<!-- views/partial_headers_admin.ejs -->
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>CompuStock Managing</title>
+    <link rel="icon" type="image/x-icon" href="./static/img/favicon.ico">
+
+    <!-- Add external references: jquery, jquery ui, bootstrap ... -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <!-- https://getbootstrap.com/ -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <!-- Static CSS/JS references... -->
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<header class="position-sticky t-0 bg-white">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-sm justify-content-center">
+        <!-- LOGO -->
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/index/admin">
+                <img src="../../static/img/logo.PNG" alt="illustration" id="logo">
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse">
+            <div class="container-fluid">
+                <!-- Links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href='/index/admin'>HOME</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-black" href="#" role="button" data-bs-toggle="dropdown">STOCK</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../../computers/list/admin">COMPUTERS</a></li>
+                            <li><a class="dropdown-item" href="../../cpus/list/admin">CPU</a></li>
+                            <li><a class="dropdown-item" href="../../gpus/list/admin">GPU</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="">CONTACT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="/">LOGOUT</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="d-flex flex-column min-vh-100 flex-grow-1">
