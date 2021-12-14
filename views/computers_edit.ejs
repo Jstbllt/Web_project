@@ -1,10 +1,12 @@
 <!-- views/computers_edit.ejs -->
 <%- include("partial_headers_admin.ejs"); %>
 
-<section class="p-3">
-<h1>Add a new computer</h1>
+<section class="bg-black text-white p-1">
+    <h2 class="ms-2">Add a New Computer</h2>
+</section>
 
-<p><a href='/computers/list/admin'>Back to the list</a></p>
+<section class="p-3">
+    <button type="button" class="btn btn-outline-dark mb-3"><a href='/computers/list/admin'>Back to the list</a></button>
 <!-- body-parser ==> we cannot use multipart/form-data ==> no file uploads -->
 <form action='/computers/update/<%= oneComputer.computer_id %>' method='post'
             enctype='application/x-www-form-urlencoded'>
@@ -63,7 +65,7 @@
     <tr><td>Stock (Unit):</td>
         <td><input type='number' name='computer_stocks' value='<%= oneComputer.computer_stocks %>' /></td></tr>
 
-    <tr><td colspan='2'> <input type='submit' value='SEND' onclick="alert('Computer updated')"/> </td></tr>
+    <tr><td colspan='2'> <button type="submit" onclick="alert('Computer has been added to the stocks.')" class="btn btn-outline-dark">SEND</button></td></tr>
 </table>
 </form>
 </section>
