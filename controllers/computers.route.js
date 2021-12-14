@@ -10,6 +10,7 @@ router.get('/', computerRootAction);
 router.get('/list', computerListAction);
 router.get('/list/admin', computerListAdminAction);
 router.get('/show/:computerId', computerShowAction);
+router.get('/show/admin/:computerId', computerShowAdminAction);
 router.get('/del/:computerId', computerDelAction);
 router.get('/edit/:computerId', computerEditAction);
 router.post('/update/:computerId', computerUpdateAction);
@@ -38,6 +39,11 @@ async function computerShowAction(request, response) {
     var oneComputer = await computerRepo.getOneComputer(request.params.computerId);
     var brands = await brandRepo.getAllBrands();
     response.render("computers_show", { "oneComputer": oneComputer, "brands": brands });
+}
+async function computerShowAdminAction(request, response) {
+    var oneComputer = await computerRepo.getOneComputer(request.params.computerId);
+    var brands = await brandRepo.getAllBrands();
+    response.render("computers_show_admin", { "oneComputer": oneComputer, "brands": brands });
 }
 
 async function computerEditAction(request, response) {

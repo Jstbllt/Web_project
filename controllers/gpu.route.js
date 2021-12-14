@@ -10,6 +10,7 @@ router.get('/', gpuRootAction);
 router.get('/list', gpuListAction);
 router.get('/list/admin', gpuListAdminAction);
 router.get('/show/:gpuId', gpuShowAction);
+router.get('/show/admin/:gpuId', gpuShowAdminAction);
 router.get('/del/:gpuId', gpuDelAction);
 router.get('/edit/:gpuId', gpuEditAction);
 router.post('/update/:gpuId', gpuUpdateAction);
@@ -35,6 +36,10 @@ async function gpuListAdminAction(request, response) {
 async function gpuShowAction(request, response) {
     var oneGpu = await gpuRepo.getOneGpu(request.params.gpuId);
     response.render("gpus_show", { "oneGpu": oneGpu });
+}
+async function gpuShowAdminAction(request, response) {
+    var oneGpu = await gpuRepo.getOneGpu(request.params.gpuId);
+    response.render("gpus_show_admin", { "oneGpu": oneGpu });
 }
 async function gpuEditAction(request, response) {
     var brands = await brandRepo.getAllBrands();

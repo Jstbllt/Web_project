@@ -1,6 +1,5 @@
 <!-- views/cpus_list_admin.ejs -->
-<!-- RECEIVES: computers [an array of computer objects] + flashMessage [string, the error message] -->
-<%- include("partial_headers.ejs"); %>
+<%- include("partial_headers_admin.ejs"); %>
 
 <section class="p-3">
 <h1>List of Cpu</h1>
@@ -31,7 +30,7 @@
             <td><%= c.cpu_basefrequency %></td>
             <td><%= c.cpu_boostfrequency %></td>
             <td><%= c.cpu_cores %></td>
-            <td><a href='/cpus/show/<%= c.cpu_id %>'>Show</a></td>
+            <td><a href='/cpus/show/admin/<%= c.cpu_id %>'>Show</a></td>
             <td><a href='/cpus/edit/<%= c.cpu_id %>'>Edit</a></td>
             <td>
                 <% if(c.cpu_id>10){ %>

@@ -1,10 +1,10 @@
 <!-- views/gpus_edit.ejs -->
-<%- include("partial_headers.ejs"); %>
+<%- include("partial_headers_admin.ejs"); %>
 
 <section class="p-3">
 <h1>Single GPU editor form</h1>
 
-<p><a href='/gpus/list'>Back to the list</a></p>
+<p><a href='/gpus/list/admin'>Back to the list</a></p>
 <form action='/gpus/update/<%= oneGpu.gpu_id %>' method='post'
       enctype='application/x-www-form-urlencoded'>
 
