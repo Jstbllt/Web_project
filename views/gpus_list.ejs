@@ -1,23 +1,29 @@
 <!-- views/gpus_list.ejs -->
 <%- include("partial_headers.ejs"); %>
 
-<section class="p-3">
-<h1>List of GPU</h1>
+
+<section class="bg-black text-white p-1">
+    <h2 class="ms-2">List of Gpu</h2>
+</section>
+
 <% if (flashMessage) { %>
     <p style='color:red'><%= flashMessage %></p>
 <% } %>
 
-<table class="table table-striped table-bordered table-hover">
-    <tr>
-        <td>ID</td>
-        <td>Brand</td>
-        <td>Model</td>
-        <td>Fill-rate pixel</td>
-        <td>CU</td>
-        <td>Memory</td>
-        <td>Show</td>
-    </tr>
-
+<section class="p-3">
+<table class="table table-striped table-hover table-responsive-sm border border-dark shadow align-middle">
+    <thead>
+        <tr class="table-active fw-bold">
+            <td>ID</td>
+            <td>Brand</td>
+            <td>Model</td>
+            <td>Fill-rate pixel</td>
+            <td>CU</td>
+            <td>Memory</td>
+            <td>Show</td>
+        </tr>
+    </thead>
+    <tbody>
     <% for (var g of gpus) { %>
         <tr>
             <td><%= g.gpu_id %></td>
@@ -26,9 +32,10 @@
             <td><%= g.gpu_fillrate_pixel %></td>
             <td><%= g.gpu_cu %></td>
             <td><%= g.gpu_memory %></td>
-            <td><a href='/gpus/show/<%= g.gpu_id %>'>Show</a></td>
+            <td><button type="button" class="btn btn-outline-dark"><a href='/gpus/show/<%= g.gpu_id %>'>Show</a></button></td>
         </tr>
     <% } %>
+    </tbody>
 </table>
 </section>
 <%- include("partial_footer.ejs"); %>
