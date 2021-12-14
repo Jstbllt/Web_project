@@ -11,6 +11,10 @@ app.use(session({
     resave: false
 }));
 
+// add after SESSION
+const auth = require("./utils/user.auth");
+auth.initialization(app);
+
 app.listen(process.env.WEB_PORT,
     function() { console.log("Listening on "+process.env.WEB_PORT); }
 );
@@ -30,5 +34,5 @@ app.use("/computers", require("./controllers/computers.route"));
 app.use("/index", require("./controllers/index.route"));
 app.use("/cpus", require("./controllers/cpu.route"));
 app.use("/gpus", require("./controllers/gpu.route"));
-app.use("/login", require("./controllers/login.route"));
+app.use("/connection", require("./controllers/login.route"));
 app.use("/static", express.static(__dirname + '/static'));

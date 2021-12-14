@@ -8,6 +8,7 @@ const gpuRepo = require('../utils/gpu.repository');
 
 router.get('/', computerRootAction);
 router.get('/list', computerListAction);
+router.get('/list/admin', computerListAdminAction);
 router.get('/show/:computerId', computerShowAction);
 router.get('/del/:computerId', computerDelAction);
 router.get('/edit/:computerId', computerEditAction);
@@ -24,6 +25,14 @@ async function computerListAction(request, response) {
     request.session.flashMessage = "";
     
     response.render("computers_list", { "computers": computers, "brands": brands, "flashMessage": flashMessage });
+}
+async function computerListAdminAction(request, response) {
+    var computers = await computerRepo.getAllComputers();
+    var brands = await brandRepo.getAllBrands();
+    var flashMessage = request.session.flashMessage;
+    request.session.flashMessage = "";
+
+    response.render("computers_list_admin", { "computers": computers, "brands": brands, "flashMessage": flashMessage });
 }
 async function computerShowAction(request, response) {
     var oneComputer = await computerRepo.getOneComputer(request.params.computerId);
@@ -47,7 +56,7 @@ async function computerEditAction(request, response) {
 
 async function computerDelAction(request, response) {
     var numRows = await computerRepo.delOneComputer(request.params.computerId);
-    response.redirect("/computers/list");
+    response.redirect("/computers/list/admin");
 }
 async function computerUpdateAction(request, response) {
     var computerId = request.params.computerId;
@@ -65,7 +74,7 @@ async function computerUpdateAction(request, response) {
         request.body.computer_price,
         request.body.computer_stocks);
 
-    response.redirect("/computers/list");
+    response.redirect("/computers/list/admin");
 }
 
 module.exports = router;

@@ -2,6 +2,7 @@
 <!-- RECEIVES: oneComputer [a single computer object] + brands [array of brand objects] -->
 <%- include("partial_headers.ejs"); %>
 
+<section class="p-3">
 <h1>Add a new computer</h1>
 
 <p><a href='/computers/list'>Back to the list</a></p>
@@ -66,5 +67,5 @@
     <tr><td colspan='2'> <input type='submit' value='SEND' onclick="alert('Computer updated')"/> </td></tr>
 </table>
 </form>
-
+</section>
 <%- include("partial_footer.ejs"); %>

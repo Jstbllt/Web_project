@@ -4,23 +4,13 @@ const router = express.Router();
 const auth = require("../utils/user.auth");
 const userRepo = require("../utils/user.repository");
 
-router.get('/', loginRootAction);
-router.get("/protected", protectedGetAction);
+router.get("/", loginRootAction);
 router.post("/login", loginPostAction);
 router.get("/logout", logoutAction);
 
 // http://localhost:9000/
 function loginRootAction(request, response) {
-    response.redirect("/login");
-}
-
-function protectedGetAction(request, response) {
-    if (request.isAuthenticated()) {
-        var ad = request.user.user_role === "ADMIN";
-        response.redirect("/login/admin");
-    } else {
-        response.redirect("/login");
-    }
+    response.render('login');
 }
 
 async function loginPostAction(request, response) {
@@ -31,7 +21,7 @@ async function loginPostAction(request, response) {
         await request.login(user, function (err) {
             if (err) { return next(err); }
         });
-        response.redirect("/");
+        response.redirect("/index/admin");
 
     } else {
         response.send("Invalid credentials provided");

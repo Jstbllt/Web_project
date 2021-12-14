@@ -8,6 +8,7 @@ const gpuRepo = require('../utils/gpu.repository');
 
 router.get('/', gpuRootAction);
 router.get('/list', gpuListAction);
+router.get('/list/admin', gpuListAdminAction);
 router.get('/show/:gpuId', gpuShowAction);
 router.get('/del/:gpuId', gpuDelAction);
 router.get('/edit/:gpuId', gpuEditAction);
@@ -23,6 +24,13 @@ async function gpuListAction(request, response) {
     request.session.flashMessage = "";
 
     response.render("gpus_list", { "gpus": gpus, "flashMessage": flashMessage });
+}
+async function gpuListAdminAction(request, response) {
+    var gpus = await gpuRepo.getAllGPU();
+    var flashMessage = request.session.flashMessage;
+    request.session.flashMessage = "";
+
+    response.render("gpus_list_admin", { "gpus": gpus, "flashMessage": flashMessage });
 }
 async function gpuShowAction(request, response) {
     var oneGpu = await gpuRepo.getOneGpu(request.params.gpuId);
@@ -43,7 +51,7 @@ async function gpuEditAction(request, response) {
 }
 async function gpuDelAction(request, response) {
     var numRows = await gpuRepo.delOneGpu(request.params.gpuId);
-    response.redirect("/gpus/list");
+    response.redirect("/gpus/list/admin");
 }
 async function gpuUpdateAction(request, response) {
     var gpuId = request.params.gpuId;
@@ -56,7 +64,7 @@ async function gpuUpdateAction(request, response) {
         request.body.gpu_cu,
         request.body.gpu_memory);
 
-    response.redirect("/gpus/list");
+    response.redirect("/gpus/list/admin");
 }
 
 module.exports = router;

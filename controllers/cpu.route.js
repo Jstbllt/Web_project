@@ -7,6 +7,7 @@ const gpuRepo = require('../utils/gpu.repository');
 
 router.get('/', cpuRootAction);
 router.get('/list', cpuListAction);
+router.get('/list/admin', cpuListAdminAction);
 router.get('/show/:cpuId', cpuShowAction);
 router.get('/del/:cpuId', cpuDelAction);
 router.get('/edit/:cpuId', cpuEditAction);
@@ -23,6 +24,14 @@ async function cpuListAction(request, response) {
 
     response.render("cpus_list", { "cpus": cpus, "flashMessage": flashMessage });
 }
+async function cpuListAdminAction(request, response) {
+    var cpus = await cpuRepo.getAllCPU();
+    var flashMessage = request.session.flashMessage;
+    request.session.flashMessage = "";
+
+    response.render("cpus_list_admin", { "cpus": cpus, "flashMessage": flashMessage });
+}
+
 async function cpuShowAction(request, response) {
     var oneCpu = await cpuRepo.getOneCpu(request.params.cpuId);
     response.render("cpus_show", { "oneCpu": oneCpu });
@@ -42,7 +51,7 @@ async function cpuEditAction(request, response) {
 }
 async function cpuDelAction(request, response) {
     var numRows = await cpuRepo.delOneCpu(request.params.cpuId);
-    response.redirect("/cpus/list");
+    response.redirect("/cpus/list/admin");
 }
 async function cpuUpdateAction(request, response) {
     var cpuId = request.params.cpuId;
@@ -55,7 +64,7 @@ async function cpuUpdateAction(request, response) {
         request.body.cpu_boostfrequency,
         request.body.cpu_cores,);
 
-    response.redirect("/cpus/list");
+    response.redirect("/cpus/list/admin");
 }
 
 module.exports = router;

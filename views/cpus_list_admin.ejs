@@ -8,6 +8,8 @@
     <p style='color:red'><%= flashMessage %></p>
 <% } %>
 
+<p><a href='/cpus/edit/0'>Add a new cpu</a></p>
+
 <table class="table table-striped table-bordered table-hover">
     <tr>
         <td>ID</td>
@@ -17,6 +19,8 @@
         <td>Boost Frequency</td>
         <td>Cores</td>
         <td>Show</td>
+        <td>Edit</td>
+        <td>Delete</td>
     </tr>
 
     <% for (var c of cpus) { %>
@@ -28,6 +32,12 @@
             <td><%= c.cpu_boostfrequency %></td>
             <td><%= c.cpu_cores %></td>
             <td><a href='/cpus/show/<%= c.cpu_id %>'>Show</a></td>
+            <td><a href='/cpus/edit/<%= c.cpu_id %>'>Edit</a></td>
+            <td>
+                <% if(c.cpu_id>10){ %>
+                    <button onclick="alert('CPU deleted')"> <a href="/cpus/del/<%= c.cpu_id %>">Delete</a></button>
+                <% } %>
+            </td>
         </tr>
     <% } %>
 </table>
