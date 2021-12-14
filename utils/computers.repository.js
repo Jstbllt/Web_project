@@ -24,7 +24,6 @@ module.exports = {
                 "LEFT OUTER JOIN gpu ON computer_gpu=gpu_id ";
             const rows = await conn.query(sql);
             conn.end();
-            console.log("ROWS FETCHED: "+rows.length);
             return rows;
         }
         catch (err) {
@@ -40,7 +39,6 @@ module.exports = {
                 "INNER JOIN brands ON computer_brand=brand_id WHERE computer_id = ?";
             const rows = await conn.query(sql, computerId);
             conn.end();
-            console.log("ROWS FETCHED: "+rows.length);
             if (rows.length == 1) {
                 return rows[0];
             } else {

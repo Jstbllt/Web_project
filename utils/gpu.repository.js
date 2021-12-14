@@ -31,7 +31,6 @@ module.exports = {
             sql = "SELECT * FROM gpu INNER JOIN brands ON gpu_brand=brand_id WHERE gpu_id = ?";
             const rows = await conn.query(sql, gpuId);
             conn.end();
-            console.log("ROWS FETCHED: "+rows.length);
             if (rows.length == 1) {
                 return rows[0];
             } else {
