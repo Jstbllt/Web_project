@@ -155,3 +155,21 @@ CREATE VIEW AllData AS
 		LEFT JOIN conn ON computer_id=conn_computer
 		LEFT JOIN features ON feat_id = conn_feat;
 SELECT * FROM AllData;
+
+
+
+
+USE computersDB;
+DROP TABLE IF EXISTS users;
+CREATE TABLE users
+(
+    user_id int AUTO_INCREMENT PRIMARY KEY,
+    user_created datetime,
+    user_name varchar(100) not null DEFAULT '',
+    user_email varchar(100) not null DEFAULT '',
+    user_pass varchar(100) not null DEFAULT ''
+);
+
+INSERT INTO users VALUES (NULL, now(), 'bill', 'bill@bill.bill','billpass');
+INSERT INTO users VALUES (NULL, now(), 'joeuser', 'joe@joe.joe', 'joepass' );
+SELECT * FROM users;

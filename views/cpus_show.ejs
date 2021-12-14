@@ -4,6 +4,7 @@
 <!-- Security problems: SQL Injection, XSS Cross Site Scripting  -->
 <%- include("partial_headers.ejs"); %>
 
+<section class="p-3">
 <h1>Single CPU Datasheet</h1>
 
 <p><a href='/cpus/list'>Back to the list</a></p>
@@ -16,5 +17,5 @@
     <tr><td>Boost Frequency:</td><td> <%= oneCpu.cpu_boostfrequency %> </td></tr>
     <tr><td>Cores:</td><td> <%= oneCpu.cpu_cores %> </td></tr>
 </table>
-
+</section>
 <%- include("partial_footer.ejs"); %>

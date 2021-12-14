@@ -1,16 +1,17 @@
 <!-- views/login.ejs -->
 <%- include("partial_headers.ejs"); %>
 
+<section class="p-3">
 <p>Login</p>
 
 <table class="table table-striped table-bordered table-hover">
 
-    <form method="post" action="/index/login">
+    <form method="post" action="/connection/login">
         <input name="username" type="username" class="form-control" id="username" placeholder="Username" required>
         <input name="userpass" type="password" class="form-control" id="password" placeholder="Password" required>
-        <a href="../">Log In</a> <br/>
+        <button type="submit" class="btn btn-dark btn-block">Login</button>
     </form>
     <a href="/index/logout">LOG OUT</a> <br/>
 </table>
-
+</section>
 <%- include("partial_footer.ejs"); %>

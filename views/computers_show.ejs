@@ -4,6 +4,7 @@
 <!-- Security problems: SQL Injection, XSS Cross Site Scripting  -->
 <%- include("partial_headers.ejs"); %>
 
+<section class="p-3">
 <h1>Single Computer Datasheet</h1>
 
 <p><a href='/computers/list'>Back to the list</a></p>
@@ -43,5 +44,5 @@
     <tr><td>Stock (unit):</td>
         <td> <%= oneComputer.computer_stocks %> </td></tr>
 </table>
-
+</section>
 <%- include("partial_footer.ejs"); %>

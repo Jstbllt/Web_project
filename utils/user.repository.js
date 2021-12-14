@@ -4,7 +4,7 @@ module.exports = {
     async getOneUser(username) {
         try {
             conn = await pool.getConnection();
-            sql = "SELECT user_id,user_name,user_email,user_role FROM users WHERE user_name = ? "; // must leave out the password+hash
+            sql = "SELECT user_id,user_name,user_email FROM users WHERE user_name = ? "; // must leave out the password+hash
             const rows = await conn.query(sql, username);
             conn.end();
             if (rows.length == 1) {
@@ -19,7 +19,7 @@ module.exports = {
     async areValidCredentials(username, password) {
         try {
             conn = await pool.getConnection();
-            sql = "SELECT * FROM USERS WHERE user_name = ? AND user_pass = ? "; // TODO: better salt+pw hash!
+            sql = "SELECT * FROM users WHERE user_name = ? AND user_pass = ? ";
             const rows = await conn.query(sql, [username, password]);
             conn.end();
 
