@@ -1,10 +1,14 @@
 <!-- views/cpus_edit.ejs -->
 <%- include("partial_headers_admin.ejs"); %>
 
-<section class="p-3">
-<h1>Add a new CPU</h1>
 
-<p><a href='/cpus/list/admin'>Back to the list</a></p>
+<section class="bg-black text-white p-1">
+    <h2 class="ms-2">Add a New Cpu</h2>
+</section>
+
+<section class="p-3">
+    <button type="button" class="btn btn-outline-dark mb-3"><a href='/cpus/list/admin'>Back to the list</a></button>
+
 <!-- body-parser ==> we cannot use multipart/form-data ==> no file uploads -->
 <form action='/cpus/update/<%= oneCpu.cpu_id %>' method='post'
       enctype='application/x-www-form-urlencoded'>
@@ -35,7 +39,7 @@
         <tr><td>Cores:</td>
             <td><input type='number' name='cpu_cores' value='<%= oneCpu.cpu_cores %>' /></td></tr>
 
-        <tr><td colspan='2'> <input type='submit' value='SEND' onclick="alert('CPU updated')"/> </td></tr>
+        <tr><td colspan='2'> <button type="submit" onclick="alert('Cpu has been added to the stocks.')" class="btn btn-outline-dark">SEND</button></td></tr>
 
     </table>
 </form>

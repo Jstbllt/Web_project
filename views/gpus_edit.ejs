@@ -1,10 +1,12 @@
 <!-- views/gpus_edit.ejs -->
 <%- include("partial_headers_admin.ejs"); %>
 
-<section class="p-3">
-<h1>Single GPU editor form</h1>
+<section class="bg-black text-white p-1">
+    <h2 class="ms-2">Add a New Gpu</h2>
+</section>
 
-<p><a href='/gpus/list/admin'>Back to the list</a></p>
+<section class="p-3">
+    <button type="button" class="btn btn-outline-dark mb-3"><a href='/gpus/list/admin'>Back to the list</a></button>
 <form action='/gpus/update/<%= oneGpu.gpu_id %>' method='post'
       enctype='application/x-www-form-urlencoded'>
 
@@ -34,8 +36,7 @@
         <tr><td>Memory:</td>
             <td><input type='number' name='gpu_memory' value='<%= oneGpu.gpu_memory %>' /></td></tr>
 
-        <tr><td colspan='2'> <input type='submit' value='SEND' onclick="alert('GPU updated')"/> </td></tr>
-
+        <tr><td colspan='2'> <button type="submit" onclick="alert('Gpu has been added to the stocks.')" class="btn btn-outline-dark">SEND</button></td></tr>
     </table>
 </form>
 </section>

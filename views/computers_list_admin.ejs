@@ -42,6 +42,9 @@
                         <% } %>
                         <%= c.cpu_model %></td>
                     <td>
+                        <% if(c.gpu_brand==null) { %>
+                            NONE
+                        <% } %>
                         <% for (var b of brands) { %>
                             <% if(c.gpu_brand==b.brand_id) { %>
                                 <%= b.brand_name %>
