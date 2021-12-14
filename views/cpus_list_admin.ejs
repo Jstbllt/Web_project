@@ -31,7 +31,10 @@
             <td><%= c.cpu_boostfrequency %></td>
             <td><%= c.cpu_cores %></td>
             <td><a href='/cpus/show/admin/<%= c.cpu_id %>'>Show</a></td>
-            <td><a href='/cpus/edit/<%= c.cpu_id %>'>Edit</a></td>
+            <td>
+                <% if(c.cpu_id>10){ %>
+                    <button> <a href='/cpus/edit/<%= c.cpu_id %>'>Edit</a></button></td>
+                <% } %>
             <td>
                 <% if(c.cpu_id>10){ %>
                     <button onclick="alert('CPU deleted')"> <a href="/cpus/del/<%= c.cpu_id %>">Delete</a></button>

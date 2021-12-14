@@ -45,10 +45,12 @@
             <td><%= c.computer_price %></td>
             <td><%= c.computer_stocks %></td>
             <td><a href='/computers/show/admin/<%= c.computer_id %>'>Show</a></td>
-            <td><a href='/computers/edit/<%= c.computer_id %>'>Edit</a></td>
+            <td><% if(c.computer_id>10){ %>
+                    <button><a href='/computers/edit/<%= c.computer_id %>'>Edit</a></button>
+                <% } %></td>
             <td>
                 <% if(c.computer_id>10){ %>
-                    <button onclick="alert('Computer deleted')"> <a href="/computers/del/<%= c.computer_id %>">Delete</a></button>
+                    <button onclick="alert('Computer Deleted')"> <a href="/computers/del/<%= c.computer_id %>">Delete</a></button>
                 <% } %>
             </td>
         </tr>
